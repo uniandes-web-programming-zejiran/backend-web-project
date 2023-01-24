@@ -21,7 +21,7 @@ const config = {
   gitKey: 'de5cd571-10da-4034-8ba8-af99beef4b14',
   sonarServer: 'sonar-isis2603',
   jenkinsServer: 'jenkins-isis2603',
-  commitMessage: "Add"
+  commitMessage: "Add_intial_files"
 };
 
 const createRepos = async () => {
