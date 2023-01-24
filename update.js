@@ -21,7 +21,7 @@ const config = {
   gitKey: 'de5cd571-10da-4034-8ba8-af99beef4b14',
   sonarServer: 'sonar-isis2603',
   jenkinsServer: 'jenkins-isis2603',
-  commitMessage: "Add_intial_files"
+  commitMessage: 'Add intial files'
 };
 
 const createRepos = async () => {
@@ -38,7 +38,7 @@ const createRepos = async () => {
 
       let command0 = `git remote rm origin`;
       let command1 = `git add .`; 
-      let command2 = `git commit -m ${config.commitMessage}`;
+      let command2 = "git commit -m ${config.commitMessage}";
 
       let command3 = `hub create -p ${config.organization}/${project.name}`;
       let command4 = `git push origin master`;
