@@ -52,11 +52,11 @@ const createRepos = async () => {
       console.log('Commiting files');
       out = await execShPromise(command2, true);
 
-      /*console.log('Creating repo: ', project.name);
-      out = await execShPromise(command1, true);
+      console.log('Creating repo: ', project.name);
+      out = await execShPromise(command3, true);
 
       console.log('Push');
-      out = await execShPromise(command4, true);*/
+      out = await execShPromise(command4, true);
     }
   } catch (e) {
     console.log('Error: ', e);
