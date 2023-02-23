@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ProductoEntity } from '../producto/producto.entity';
+import { EventoEntity } from '../evento/evento.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class NegocioEntity {
@@ -20,4 +22,11 @@ export class NegocioEntity {
 
  @Column()
  imagen: string;
+
+ @OneToMany(() => ProductoEntity, producto => producto.negocio)
+ productos: ProductoEntity[];
+
+ @OneToMany(() => EventoEntity, evento => evento.negocio)
+ eventos: EventoEntity[];
+
 }
