@@ -7,6 +7,8 @@ import { PedidoModule } from './pedido/pedido.module';
 import { PagoModule } from './pago/pago.module';
 import { ReviewModule } from './review/review.module';
 import { EventoModule } from './evento/evento.module';
+import { UsuarioModule } from './usuario/usuario.module';
+import { CarritoModule } from './carrito/carrito.module';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { EventoModule } from './evento/evento.module';
     PedidoModule,
     ReviewModule,
     EventoModule,
+    UsuarioModule,
+    CarritoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
