@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { PedidoEntity } from 'src/pedido/pedido.entity';
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
 export class PagoEntity {
