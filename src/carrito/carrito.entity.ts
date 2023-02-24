@@ -18,7 +18,7 @@ export class CarritoEntity {
     @OneToOne(()=> UsuarioEntity, usuario => usuario.carrito)
     usuario: UsuarioEntity;
 
-    @ManyToMany(() => ProductoEntity, producto => producto.carritos)
+    @OneToMany(() => ProductoEntity, producto => producto.carritos)
     productos: ProductoEntity[];
 }
 
