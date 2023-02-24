@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ProductoEntity } from 'src/producto/producto.entity';
+import { UsuarioEntity } from 'src/usuario/usuario.entity';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 @Entity()
 export class ReviewEntity {
@@ -20,4 +22,10 @@ export class ReviewEntity {
 
     @Column()
     fecha: string;
+
+    @ManyToOne(()=> UsuarioEntity, usuario => usuario.reviews)
+    usuario: UsuarioEntity;
+
+    @ManyToOne(()=> ProductoEntity, producto => producto.reviews)
+    producto: ProductoEntity;
 }
