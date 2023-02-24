@@ -5,28 +5,27 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class NegocioEntity {
- @PrimaryGeneratedColumn('uuid')
- id: string;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
- @Column()
- nombre: string;
- 
- @Column()
- tipo: string;
- 
- @Column()
- ubicacion: string;
- 
- @Column()
- fechaCreacion: string;
+    @Column()
+    nombre: string;
 
- @Column()
- imagen: string;
+    @Column()
+    tipo: string;
 
- @OneToMany(() => ProductoEntity, producto => producto.negocio)
- productos: ProductoEntity[];
+    @Column()
+    ubicacion: string;
 
- @OneToMany(() => EventoEntity, evento => evento.negocio)
- eventos: EventoEntity[];
+    @Column()
+    fechaCreacion: string;
 
+    @Column()
+    imagen: string;
+
+    @OneToMany(() => ProductoEntity, producto => producto.negocio)
+    productos: ProductoEntity[];
+
+    @OneToMany(() => EventoEntity, evento => evento.negocio)
+    eventos: EventoEntity[];
 }
