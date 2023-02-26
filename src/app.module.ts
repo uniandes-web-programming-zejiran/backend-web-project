@@ -9,6 +9,7 @@ import { ReviewModule } from './review/review.module';
 import { EventoModule } from './evento/evento.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { CarritoModule } from './carrito/carrito.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -20,6 +21,27 @@ import { CarritoModule } from './carrito/carrito.module';
     EventoModule,
     UsuarioModule,
     CarritoModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'postgres',
+      database: 'ecoweb',
+      entities: [
+        NegocioModule,
+        ProductoModule,
+        PagoModule,
+        PedidoModule,
+        ReviewModule,
+        EventoModule,
+        UsuarioModule,
+        CarritoModule,
+      ],
+      dropSchema: true,
+      synchronize: true,
+      keepConnectionAlive: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
