@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { PedidoEntity } from 'src/pedido/pedido.entity';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class PagoEntity {
@@ -11,4 +12,7 @@ export class PagoEntity {
 
     @Column()
     pagado: boolean;
+
+    @OneToOne(() => PedidoEntity, pedido => pedido.pago)
+    pedido: PedidoEntity
 }

@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
+import { PagoEntity } from 'src/pago/pago.entity';
 import { ProductoEntity } from 'src/producto/producto.entity';
 import { UsuarioEntity } from 'src/usuario/usuario.entity';
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class PedidoEntity {
@@ -22,5 +23,9 @@ export class PedidoEntity {
 
     @ManyToMany(() => ProductoEntity, producto => producto.pedidos)
     @JoinTable()
-    productos:  ProductoEntity[];
+    productos: ProductoEntity[];
+
+    @OneToOne(() => PagoEntity, pago => pago.pedido)
+    @JoinColumn()
+    pago: PagoEntity
 }

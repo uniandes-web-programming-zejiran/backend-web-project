@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { ProductoEntity } from 'src/producto/producto.entity';
 import { UsuarioEntity } from 'src/usuario/usuario.entity';
-import { Column, Entity, PrimaryGeneratedColumn, ManyToMany, OneToOne } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany, OneToOne } from 'typeorm';
 
 @Entity()
 export class CarritoEntity {
@@ -18,8 +18,6 @@ export class CarritoEntity {
     @OneToOne(() => UsuarioEntity, usuario => usuario.carrito)
     usuario: UsuarioEntity;
 
-    @ManyToMany(() => ProductoEntity, producto => producto.carritos)
+    @OneToMany(() => ProductoEntity, producto => producto.carritos)
     productos: ProductoEntity[];
 }
-
-
