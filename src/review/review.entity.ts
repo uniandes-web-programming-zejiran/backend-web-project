@@ -23,9 +23,9 @@ export class ReviewEntity {
     @Column()
     fecha: string;
 
-    @ManyToOne(()=> UsuarioEntity, usuario => usuario.reviews)
+    @ManyToOne(() => UsuarioEntity, usuario => usuario.reviews)
     usuario: UsuarioEntity;
 
-    @ManyToOne(()=> ProductoEntity, producto => producto.reviews)
+    @ManyToOne(() => ProductoEntity, producto => producto.reviews)
     producto: ProductoEntity;
 }

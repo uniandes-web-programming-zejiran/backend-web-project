@@ -22,6 +22,6 @@ export class EventoEntity {
     @Column()
     imagen: string;
 
-    @ManyToOne(()=> NegocioEntity, negocio => negocio.eventos)
+    @ManyToOne(() => NegocioEntity, negocio => negocio.eventos)
     negocio: NegocioEntity;
 }

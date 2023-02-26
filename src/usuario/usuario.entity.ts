@@ -22,16 +22,15 @@ export class UsuarioEntity {
     @Column()
     imagen: string
 
-    @OneToMany(()=>ReviewEntity, review => review.usuario)
+    @OneToMany(() => ReviewEntity, review => review.usuario)
     reviews: ReviewEntity[];
 
-    
-    @OneToOne(()=>CarritoEntity, carrito => carrito.usuario)
+
+    @OneToOne(() => CarritoEntity, carrito => carrito.usuario)
     @JoinColumn()
     carrito: CarritoEntity;
-    
-    
-    @OneToMany(()=> PedidoEntity, pedido => pedido.usuario)
+
+
+    @OneToMany(() => PedidoEntity, pedido => pedido.usuario)
     pedidos: PedidoEntity[];
 }
-

@@ -15,7 +15,7 @@ export class CarritoEntity {
     @Column()
     fechaCreacion: string;
 
-    @OneToOne(()=> UsuarioEntity, usuario => usuario.carrito)
+    @OneToOne(() => UsuarioEntity, usuario => usuario.carrito)
     usuario: UsuarioEntity;
 
     @ManyToMany(() => ProductoEntity, producto => producto.carritos)

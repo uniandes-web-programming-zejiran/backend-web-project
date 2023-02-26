@@ -7,34 +7,34 @@ import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColum
 
 @Entity()
 export class ProductoEntity {
- @PrimaryGeneratedColumn('uuid')
- id: string;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
- @Column()
- nombre: string;
- 
- @Column()
- precio: number;
- 
- @Column()
- stock: number;
- 
- @Column()
- categoria: string;
+    @Column()
+    nombre: string;
 
- @Column()
- imagen: string;
+    @Column()
+    precio: number;
 
- @ManyToMany(() => PedidoEntity, pedido => pedido.productos)
- pedidos: PedidoEntity[];
+    @Column()
+    stock: number;
 
- @ManyToOne(() => NegocioEntity, negocio => negocio.productos)
- negocio: NegocioEntity;
+    @Column()
+    categoria: string;
 
- @OneToMany(() => ReviewEntity, review => review.producto)
- reviews: ReviewEntity[];
+    @Column()
+    imagen: string;
 
- @ManyToMany(() => CarritoEntity, carrito => carrito.productos)
- carritos: CarritoEntity[];
+    @ManyToMany(() => PedidoEntity, pedido => pedido.productos)
+    pedidos: PedidoEntity[];
+
+    @ManyToOne(() => NegocioEntity, negocio => negocio.productos)
+    negocio: NegocioEntity;
+
+    @OneToMany(() => ReviewEntity, review => review.producto)
+    reviews: ReviewEntity[];
+
+    @ManyToMany(() => CarritoEntity, carrito => carrito.productos)
+    carritos: CarritoEntity[];
 
 }
