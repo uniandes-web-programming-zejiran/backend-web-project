@@ -10,6 +10,14 @@ import { EventoModule } from './evento/evento.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { CarritoModule } from './carrito/carrito.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CarritoEntity } from './carrito/carrito.entity';
+import { EventoEntity } from './evento/evento.entity';
+import { NegocioEntity } from './negocio/negocio.entity';
+import { PagoEntity } from './pago/pago.entity';
+import { PedidoEntity } from './pedido/pedido.entity';
+import { ProductoEntity } from './producto/producto.entity';
+import { ReviewEntity } from './review/review.entity';
+import { UsuarioEntity } from './usuario/usuario.entity';
 
 @Module({
   imports: [
@@ -29,14 +37,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: 'postgres',
       database: 'ecoweb',
       entities: [
-        NegocioModule,
-        ProductoModule,
-        PagoModule,
-        PedidoModule,
-        ReviewModule,
-        EventoModule,
-        UsuarioModule,
-        CarritoModule,
+        NegocioEntity,
+        ProductoEntity,
+        PagoEntity,
+        PedidoEntity,
+        ReviewEntity,
+        EventoEntity,
+        UsuarioEntity,
+        CarritoEntity,
       ],
       dropSchema: true,
       synchronize: true,
