@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { CarritoEntity } from 'src/carrito/carrito.entity';
+import { PublicacionEntity } from 'src/publicacion/publicacion.entity';
 import { PedidoEntity } from 'src/pedido/pedido.entity';
 import { ReviewEntity } from 'src/review/review.entity';
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn } from 'typeorm'
@@ -25,9 +25,8 @@ export class UsuarioEntity {
     @OneToMany(() => ReviewEntity, review => review.usuario)
     reviews: ReviewEntity[];
 
-    @OneToOne(() => CarritoEntity, carrito => carrito.usuario)
-    @JoinColumn()
-    carrito: CarritoEntity;
+    @OneToMany(() => PublicacionEntity, publicacion => publicacion.usuario)
+    publicaciones: PublicacionEntity[];
 
     @OneToMany(() => PedidoEntity, pedido => pedido.usuario)
     pedidos: PedidoEntity[];

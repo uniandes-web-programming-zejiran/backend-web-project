@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { PedidoEntity } from '../pedido/pedido.entity';
 import { NegocioEntity } from '../negocio/negocio.entity';
-import { CarritoEntity } from '../carrito/carrito.entity';
 import { ReviewEntity } from '../review/review.entity';
 import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -33,7 +32,4 @@ export class ProductoEntity {
 
     @OneToMany(() => ReviewEntity, review => review.producto)
     reviews: ReviewEntity[];
-
-    @ManyToMany(() => CarritoEntity, carrito => carrito.productos)
-    carritos: CarritoEntity[];
 }
