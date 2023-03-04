@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { PedidoEntity } from 'src/pedido/pedido.entity';
+import { PedidoEntity } from '../pedido/pedido.entity';
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

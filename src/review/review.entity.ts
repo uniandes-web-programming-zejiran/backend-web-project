@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { ProductoEntity } from 'src/producto/producto.entity';
-import { UsuarioEntity } from 'src/usuario/usuario.entity';
+import { ProductoEntity } from '../producto/producto.entity';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 @Entity()

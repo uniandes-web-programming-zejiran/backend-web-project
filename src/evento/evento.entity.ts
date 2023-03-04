@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { NegocioEntity } from 'src/negocio/negocio.entity';
+import { NegocioEntity } from '../negocio/negocio.entity';
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 @Entity()

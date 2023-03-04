@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { PagoEntity } from 'src/pago/pago.entity';
-import { ProductoEntity } from 'src/producto/producto.entity';
-import { UsuarioEntity } from 'src/usuario/usuario.entity';
+import { PagoEntity } from '../pago/pago.entity';
+import { ProductoEntity } from '../producto/producto.entity';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
