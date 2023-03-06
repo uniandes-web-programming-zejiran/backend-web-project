@@ -18,6 +18,8 @@ import { PedidoEntity } from './pedido/pedido.entity';
 import { ProductoEntity } from './producto/producto.entity';
 import { ReviewEntity } from './review/review.entity';
 import { UsuarioEntity } from './usuario/usuario.entity';
+import { NegocioProductoModule } from './negocio-producto/negocio-producto.module';
+import { NegocioEventoModule } from './negocio-evento/negocio-evento.module';
 
 @Module({
   imports: [
@@ -50,6 +52,8 @@ import { UsuarioEntity } from './usuario/usuario.entity';
       synchronize: true,
       keepConnectionAlive: true,
     }),
+    NegocioProductoModule,
+    NegocioEventoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
