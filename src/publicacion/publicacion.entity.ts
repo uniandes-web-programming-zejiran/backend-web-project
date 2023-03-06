@@ -9,7 +9,7 @@ export class PublicacionEntity {
     id: string;
 
     @Column()
-    titulp: string;
+    titulo: string;
 
     @Column()
     cuerpo: string;

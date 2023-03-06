@@ -10,6 +10,7 @@ import { ReviewEntity } from "../../review/review.entity";
 import { UsuarioEntity } from "../../usuario/usuario.entity";
 
 export const TypeOrmTestingConfig = () => [
+    
     TypeOrmModule.forRoot({
         type: 'sqlite',
         database: ':memory:',

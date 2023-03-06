@@ -22,7 +22,7 @@ export class UsuarioService {
     async findOne(cedula: string): Promise<UsuarioEntity> {
         const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {cedula}, relations: ["reviews", "publicaciones", "pedidos"]});
         if (!usuario) {
-            throw new BusinessLogicException("EL usaurio con la cedula " + cedula + " no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con la cedula dada no fue encontrado", BusinessError.NOT_FOUND);
         }
         return usuario;
     }
@@ -36,7 +36,7 @@ export class UsuarioService {
     async update(cedula: string, usuario: UsuarioEntity): Promise<UsuarioEntity> {
         const persistedUsuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {cedula}});
         if (!persistedUsuario) {
-            throw new BusinessLogicException("EL usaurio con la cedula " + cedula + " no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con la cedula dada no fue encontrado", BusinessError.NOT_FOUND);
         }
         return await this.usuarioRepository.save({...persistedUsuario, ...usuario});
     }
@@ -45,7 +45,7 @@ export class UsuarioService {
     async delete(cedula: string) {
         const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {cedula}});
         if (!usuario) {
-            throw new BusinessLogicException("EL usaurio con la cedula " + cedula + " no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con la cedula dada no fue encontrado", BusinessError.NOT_FOUND);
         }
         await this.usuarioRepository.remove(usuario);
     }
