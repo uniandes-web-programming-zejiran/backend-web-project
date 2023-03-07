@@ -7,7 +7,7 @@ import { EventoEntity } from './evento.entity';
 import { EventoService } from './evento.service';
 
 import { faker } from '@faker-js/faker';
-import { NegocioEntity } from 'src/negocio/negocio.entity';
+import { NegocioEntity } from '../negocio/negocio.entity';
 
 describe('EventoService', () => {
   let service: EventoService;

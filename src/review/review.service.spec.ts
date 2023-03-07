@@ -7,8 +7,8 @@ import { ReviewEntity } from './review.entity';
 import { ReviewService } from './review.service';
 
 import { faker } from '@faker-js/faker';
-import { UsuarioEntity } from 'src/usuario/usuario.entity';
-import { ProductoEntity } from 'src/producto/producto.entity';
+import { UsuarioEntity } from '../usuario/usuario.entity';
+import { ProductoEntity } from '../producto/producto.entity';
 
 describe('ReviewService', () => {
   let service: ReviewService;
@@ -67,7 +67,7 @@ describe('ReviewService', () => {
   it('findOne deberia mandar exception para un review invalido', async () => {
     await expect(() => service.findOne('0')).rejects.toHaveProperty(
       'message',
-      'El review con el id dado no fue encontrado',
+      'The review with the given id was not found',
     );
   });
 
