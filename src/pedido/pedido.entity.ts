@@ -19,13 +19,13 @@ export class PedidoEntity {
   id: string;
 
   @Column()
-  nombre: string;
-
-  @Column()
   fecha: string;
 
   @Column()
   monto: GLfloat;
+
+  @Column()
+  estado: string;
 
   @ManyToOne(() => UsuarioEntity, (usuario) => usuario.pedidos)
   usuario: UsuarioEntity;
