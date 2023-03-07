@@ -55,7 +55,6 @@ describe('PagoService', () => {
     expect(pago).not.toBeNull();
     expect(pago.monto).toEqual(storedPago.monto);
     expect(pago.pagado).toEqual(storedPago.pagado);
- 
   });
 
   it('findOne deberia mandar exception para un pago invalido', async () => {
@@ -67,10 +66,10 @@ describe('PagoService', () => {
 
   it('create deberia retornar un pago', async () => {
     const pago: PagoEntity = {
-        id: '',
-        monto: faker.datatype.number(),
-        pagado: faker.datatype.boolean(),
-        pedido: new PedidoEntity
+      id: '',
+      monto: faker.datatype.number(),
+      pagado: faker.datatype.boolean(),
+      pedido: new PedidoEntity(),
     };
 
     const newPago: PagoEntity = await service.create(pago);
@@ -102,7 +101,7 @@ describe('PagoService', () => {
     let pago: PagoEntity = pagosList[0];
     pago = {
       ...pago,
-      monto : faker.datatype.number(),
+      monto: faker.datatype.number(),
     };
     await expect(() => service.update('0', pago)).rejects.toHaveProperty(
       'message',

@@ -39,8 +39,9 @@ export class PagoService {
   }
 
   async update(id: string, pago: PagoEntity): Promise<PagoEntity> {
-    const persistedPago: PagoEntity =
-      await this.pagoRepository.findOne({ where: { id } });
+    const persistedPago: PagoEntity = await this.pagoRepository.findOne({
+      where: { id },
+    });
     if (!persistedPago)
       throw new BusinessLogicException(
         'El pago con el id dado no fue encontrado',
