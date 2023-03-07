@@ -50,6 +50,7 @@ export class ReviewProductoService {
   ): Promise<ReviewEntity> {
     const producto: ProductoEntity = await this.productoRepository.findOne({
       where: { id: productoId },
+      relations: ['reviews'],
     });
     if (!producto)
       throw new BusinessLogicException(
@@ -120,13 +121,12 @@ export class ReviewProductoService {
     }
 
     producto.reviews = reviews;
-    return await this.reviewRepository.save(producto);
+    return await this.productoRepository.save(producto);
   }
 
   async deleteReviewProducto(reviewId: string, productoId: string) {
     const review: ReviewEntity = await this.reviewRepository.findOne({
       where: { id: reviewId },
-      relations: ['reviews'],
     });
     if (!review)
       throw new BusinessLogicException(
@@ -136,6 +136,7 @@ export class ReviewProductoService {
 
     const producto: ProductoEntity = await this.productoRepository.findOne({
       where: { id: productoId },
+      relations: ['reviews'],
     });
     if (!producto)
       throw new BusinessLogicException(
@@ -154,6 +155,6 @@ export class ReviewProductoService {
       );
 
     producto.reviews = producto.reviews.filter((e) => e.id !== reviewId);
-    await this.reviewRepository.save(review);
+    await this.productoRepository.save(producto);
   }
 }
