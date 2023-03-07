@@ -4,24 +4,24 @@ import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 @Entity()
 export class EventoEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @Column()
-    titulo: string;
+  @Column()
+  titulo: string;
 
-    @Column()
-    objetivo: string;
+  @Column()
+  objetivo: string;
 
-    @Column()
-    lugar: string;
+  @Column()
+  lugar: string;
 
-    @Column()
-    fecha: string;
+  @Column()
+  fecha: string;
 
-    @Column()
-    imagen: string;
+  @Column()
+  imagen: string;
 
-    @ManyToOne(() => NegocioEntity, negocio => negocio.eventos)
-    negocio: NegocioEntity;
+  @ManyToOne(() => NegocioEntity, (negocio) => negocio.eventos)
+  negocio: NegocioEntity;
 }
