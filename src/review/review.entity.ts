@@ -5,27 +5,27 @@ import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 @Entity()
 export class ReviewEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @Column()
-    titulo: string;
+  @Column()
+  titulo: string;
 
-    @Column()
-    descripcion: string;
+  @Column()
+  descripcion: string;
 
-    @Column()
-    puntaje: string;
+  @Column()
+  puntaje: string;
 
-    @Column()
-    imagen: string;
+  @Column()
+  imagen: string;
 
-    @Column()
-    fecha: string;
+  @Column()
+  fecha: string;
 
-    @ManyToOne(() => UsuarioEntity, usuario => usuario.reviews)
-    usuario: UsuarioEntity;
+  @ManyToOne(() => UsuarioEntity, (usuario) => usuario.reviews)
+  usuario: UsuarioEntity;
 
-    @ManyToOne(() => ProductoEntity, producto => producto.reviews)
-    producto: ProductoEntity;
+  @ManyToOne(() => ProductoEntity, (producto) => producto.reviews)
+  producto: ProductoEntity;
 }
