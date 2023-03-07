@@ -16,14 +16,14 @@ export class ReviewService {
 
   async findAll(): Promise<ReviewEntity[]> {
     return await this.reviewRepository.find({
-      relations: ['usuarios', 'productos'],
+      relations: ['usuario', 'producto'],
     });
   }
 
   async findOne(id: string): Promise<ReviewEntity> {
     const review = await this.reviewRepository.findOne({
       where: { id },
-      relations: ['usuarios', 'productos'],
+      relations: ['usuario', 'producto'],
     });
     if (!review)
       throw new BusinessLogicException(
