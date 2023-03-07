@@ -50,6 +50,7 @@ export class ReviewUsuarioService {
   ): Promise<ReviewEntity> {
     const usuario: UsuarioEntity = await this.usuarioRepository.findOne({
       where: { cedula: usuarioId },
+      relations: ['reviews'],
     });
     if (!usuario)
       throw new BusinessLogicException(
@@ -120,13 +121,12 @@ export class ReviewUsuarioService {
     }
 
     usuario.reviews = reviews;
-    return await this.reviewRepository.save(usuario);
+    return await this.usuarioRepository.save(usuario);
   }
 
   async deleteReviewUsuario(reviewId: string, usuarioId: string) {
     const review: ReviewEntity = await this.reviewRepository.findOne({
       where: { id: reviewId },
-      relations: ['reviews'],
     });
     if (!review)
       throw new BusinessLogicException(
@@ -136,6 +136,7 @@ export class ReviewUsuarioService {
 
     const usuario: UsuarioEntity = await this.usuarioRepository.findOne({
       where: { cedula: usuarioId },
+      relations: ['reviews'],
     });
     if (!usuario)
       throw new BusinessLogicException(
@@ -154,6 +155,6 @@ export class ReviewUsuarioService {
       );
 
     usuario.reviews = usuario.reviews.filter((e) => e.id !== reviewId);
-    await this.reviewRepository.save(review);
+    await this.usuarioRepository.save(usuario);
   }
 }
