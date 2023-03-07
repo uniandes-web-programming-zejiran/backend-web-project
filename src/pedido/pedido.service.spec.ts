@@ -59,7 +59,6 @@ describe('PedidoService', () => {
     expect(pedido.fecha).toEqual(storedPedido.fecha);
     expect(pedido.monto).toEqual(storedPedido.monto);
     expect(pedido.estado).toEqual(storedPedido.estado);
-    
   });
 
   //Prueba metodo findOne con cedula inexistente
@@ -73,14 +72,14 @@ describe('PedidoService', () => {
   //Prueba para el metodo create
   it('create deberia crear un pedido', async () => {
     const pedido: PedidoEntity = {
-        id: '',
-        fecha: faker.date.past().toISOString(),
-        monto: faker.datatype.number(),
-        estado: faker.datatype.string(),
-        productos: [],
-        usuario: new UsuarioEntity(),
-        //Revisar la relacion con pago
-        pago: null,
+      id: '',
+      fecha: faker.date.past().toISOString(),
+      monto: faker.datatype.number(),
+      estado: faker.datatype.string(),
+      productos: [],
+      usuario: new UsuarioEntity(),
+      //Revisar la relacion con pago
+      pago: null,
     };
     const newPedido: PedidoEntity = await service.create(pedido);
     expect(newPedido).not.toBeNull();
@@ -101,10 +100,7 @@ describe('PedidoService', () => {
     pedido.monto = faker.datatype.number();
     pedido.estado = faker.datatype.string();
 
-    const updatedPedido: PedidoEntity = await service.update(
-      pedido.id,
-      pedido,
-    );
+    const updatedPedido: PedidoEntity = await service.update(pedido.id, pedido);
     expect(updatedPedido).not.toBeNull();
     const storedPedido: PedidoEntity = await repository.findOne({
       where: { id: pedido.id },
@@ -120,9 +116,9 @@ describe('PedidoService', () => {
     let pedido: PedidoEntity = pedidosList[0];
     pedido = {
       ...pedido,
-        fecha: faker.date.past().toISOString(),
-        monto: faker.datatype.number(),
-        estado: faker.datatype.string(),
+      fecha: faker.date.past().toISOString(),
+      monto: faker.datatype.number(),
+      estado: faker.datatype.string(),
     };
     expect(() => service.update('0', pedido)).rejects.toHaveProperty(
       'message',

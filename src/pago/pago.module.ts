@@ -4,7 +4,7 @@ import { PagoService } from './pago.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-    providers: [PagoService],
-    imports: [TypeOrmModule.forFeature([PagoEntity])],
+  providers: [PagoService],
+  imports: [TypeOrmModule.forFeature([PagoEntity])],
 })
 export class PagoModule {}
