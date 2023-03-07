@@ -20,6 +20,8 @@ import { ReviewEntity } from './review/review.entity';
 import { UsuarioEntity } from './usuario/usuario.entity';
 import { NegocioProductoModule } from './negocio-producto/negocio-producto.module';
 import { NegocioEventoModule } from './negocio-evento/negocio-evento.module';
+import { ReviewUsuarioModule } from './review-usuario/review-usuario.module';
+import { ReviewProductoModule } from './review-producto/review-producto.module';
 
 @Module({
   imports: [
@@ -54,6 +56,8 @@ import { NegocioEventoModule } from './negocio-evento/negocio-evento.module';
     }),
     NegocioProductoModule,
     NegocioEventoModule,
+    ReviewUsuarioModule,
+    ReviewProductoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
