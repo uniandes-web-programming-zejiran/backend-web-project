@@ -2,30 +2,39 @@
 import { PagoEntity } from '../pago/pago.entity';
 import { ProductoEntity } from '../producto/producto.entity';
 import { UsuarioEntity } from '../usuario/usuario.entity';
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class PedidoEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @Column()
-    nombre: string;
+  @Column()
+  nombre: string;
 
-    @Column()
-    fecha: string;
+  @Column()
+  fecha: string;
 
-    @Column()
-    monto: GLfloat;
+  @Column()
+  monto: GLfloat;
 
-    @ManyToOne(() => UsuarioEntity, usuario => usuario.pedidos)
-    usuario: UsuarioEntity;
+  @ManyToOne(() => UsuarioEntity, (usuario) => usuario.pedidos)
+  usuario: UsuarioEntity;
 
-    @ManyToMany(() => ProductoEntity, producto => producto.pedidos)
-    @JoinTable()
-    productos: ProductoEntity[];
+  @ManyToMany(() => ProductoEntity, (producto) => producto.pedidos)
+  @JoinTable()
+  productos: ProductoEntity[];
 
-    @OneToOne(() => PagoEntity, pago => pago.pedido)
-    @JoinColumn()
-    pago: PagoEntity
+  @OneToOne(() => PagoEntity, (pago) => pago.pedido)
+  @JoinColumn()
+  pago: PagoEntity;
 }

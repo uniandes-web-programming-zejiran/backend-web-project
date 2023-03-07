@@ -4,22 +4,21 @@ import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 @Entity()
 export class PublicacionEntity {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @Column()
+  titulo: string;
 
-    @Column()
-    titulo: string;
+  @Column()
+  cuerpo: string;
 
-    @Column()
-    cuerpo: string;
+  @Column()
+  fechaPubliacion: string;
 
-    @Column()
-    fechaPubliacion: string;
+  @Column()
+  imagen: string;
 
-    @Column()
-    imagen: string;
-
-    @ManyToOne(() => UsuarioEntity, usuario => usuario.publicaciones)
-    usuario: UsuarioEntity;
+  @ManyToOne(() => UsuarioEntity, (usuario) => usuario.publicaciones)
+  usuario: UsuarioEntity;
 }

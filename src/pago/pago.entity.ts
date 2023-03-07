@@ -4,15 +4,15 @@ import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class PagoEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @Column()
-    monto: GLfloat;
+  @Column()
+  monto: GLfloat;
 
-    @Column()
-    pagado: boolean;
+  @Column()
+  pagado: boolean;
 
-    @OneToOne(() => PedidoEntity, pedido => pedido.pago)
-    pedido: PedidoEntity
+  @OneToOne(() => PedidoEntity, (pedido) => pedido.pago)
+  pedido: PedidoEntity;
 }

@@ -78,7 +78,7 @@ describe('EventoService', () => {
       lugar: faker.address.city(),
       fecha: faker.date.between('2023-03-07', '2023-12-31').toISOString(),
       imagen: faker.image.imageUrl(),
-      negocio: new NegocioEntity,
+      negocio: new NegocioEntity(),
     };
 
     const newEvento: EventoEntity = await service.create(evento);

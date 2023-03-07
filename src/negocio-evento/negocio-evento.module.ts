@@ -6,6 +6,6 @@ import { NegocioEventoService } from './negocio-evento.service';
 
 @Module({
   providers: [NegocioEventoService],
-  imports: [TypeOrmModule.forFeature([NegocioEntity, EventoEntity])]
+  imports: [TypeOrmModule.forFeature([NegocioEntity, EventoEntity])],
 })
 export class NegocioEventoModule {}

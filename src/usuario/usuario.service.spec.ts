@@ -20,7 +20,9 @@ describe('UsuarioService', () => {
     }).compile();
 
     service = module.get<UsuarioService>(UsuarioService);
-    repository = module.get<Repository<UsuarioEntity>>(getRepositoryToken(UsuarioEntity));
+    repository = module.get<Repository<UsuarioEntity>>(
+      getRepositoryToken(UsuarioEntity),
+    );
     await seedDatabase();
   });
 
@@ -32,17 +34,17 @@ describe('UsuarioService', () => {
   const seedDatabase = async () => {
     repository.clear();
     usuariosList = [];
-    for(let i= 0; i < 5; i++){
+    for (let i = 0; i < 5; i++) {
       const usuario: UsuarioEntity = await repository.save({
         cedula: faker.random.numeric(10).toString(),
         nombre: faker.name.firstName(),
         fechaInscripcion: faker.date.past().toString(),
         fechaNacimiento: faker.date.birthdate().toString(),
-        imagen: faker.image.avatar()
+        imagen: faker.image.avatar(),
       });
       usuariosList.push(usuario);
     }
-  }
+  };
 
   //Prueba para el metodo findAll
   it('findAll deberia retornar el listado de usuarios', async () => {
@@ -56,16 +58,19 @@ describe('UsuarioService', () => {
     const storedUsuario: UsuarioEntity = usuariosList[0];
     const usuario: UsuarioEntity = await service.findOne(storedUsuario.cedula);
     expect(usuario).not.toBeNull();
-    expect(usuario.cedula).toEqual(storedUsuario.cedula)
-    expect(usuario.nombre).toEqual(storedUsuario.nombre)
-    expect(usuario.fechaInscripcion).toEqual(storedUsuario.fechaInscripcion)
-    expect(usuario.fechaNacimiento).toEqual(storedUsuario.fechaNacimiento)
-    expect(usuario.imagen).toEqual(storedUsuario.imagen)
+    expect(usuario.cedula).toEqual(storedUsuario.cedula);
+    expect(usuario.nombre).toEqual(storedUsuario.nombre);
+    expect(usuario.fechaInscripcion).toEqual(storedUsuario.fechaInscripcion);
+    expect(usuario.fechaNacimiento).toEqual(storedUsuario.fechaNacimiento);
+    expect(usuario.imagen).toEqual(storedUsuario.imagen);
   });
 
   //Prueba metodo findOne con cedula inexistente
   it('findOne deberia retornar exception para un usuario no valido', async () => {
-    await expect(() => service.findOne("0")).rejects.toHaveProperty("message", "El usuario con la cedula dada no fue encontrado")
+    await expect(() => service.findOne('0')).rejects.toHaveProperty(
+      'message',
+      'El usuario con la cedula dada no fue encontrado',
+    );
   });
 
   //Prueba para el metodo create
@@ -78,54 +83,70 @@ describe('UsuarioService', () => {
       imagen: faker.image.avatar(),
       reviews: [],
       publicaciones: [],
-      pedidos: []
-    }
+      pedidos: [],
+    };
     const newUsuario: UsuarioEntity = await service.create(usuario);
     expect(newUsuario).not.toBeNull();
 
-    const storedUsuario: UsuarioEntity = await repository.findOne({where: {cedula: newUsuario.cedula}})
-    expect(storedUsuario).not.toBeNull()
-    expect(storedUsuario.cedula).toEqual(newUsuario.cedula)
-    expect(storedUsuario.nombre).toEqual(newUsuario.nombre)
-    expect(storedUsuario.fechaInscripcion).toEqual(newUsuario.fechaInscripcion)
-    expect(storedUsuario.fechaNacimiento).toEqual(newUsuario.fechaNacimiento)
-    expect(storedUsuario.imagen).toEqual(newUsuario.imagen)
-
+    const storedUsuario: UsuarioEntity = await repository.findOne({
+      where: { cedula: newUsuario.cedula },
+    });
+    expect(storedUsuario).not.toBeNull();
+    expect(storedUsuario.cedula).toEqual(newUsuario.cedula);
+    expect(storedUsuario.nombre).toEqual(newUsuario.nombre);
+    expect(storedUsuario.fechaInscripcion).toEqual(newUsuario.fechaInscripcion);
+    expect(storedUsuario.fechaNacimiento).toEqual(newUsuario.fechaNacimiento);
+    expect(storedUsuario.imagen).toEqual(newUsuario.imagen);
   });
 
   //Prueba para el metodo update
   it('update deberia actualizar un usuario', async () => {
     const usuario: UsuarioEntity = usuariosList[0];
-    usuario.nombre = "Nuevo nombre";
+    usuario.nombre = 'Nuevo nombre';
     usuario.imagen = faker.image.avatar();
-    const updatedUsuario: UsuarioEntity = await service.update(usuario.cedula, usuario);
+    const updatedUsuario: UsuarioEntity = await service.update(
+      usuario.cedula,
+      usuario,
+    );
     expect(updatedUsuario).not.toBeNull();
-    const storedUsuario: UsuarioEntity = await repository.findOne({where: {cedula: usuario.cedula}})
-    expect(storedUsuario).not.toBeNull()
-    expect(storedUsuario.nombre).toEqual(usuario.nombre)
-    expect(storedUsuario.imagen).toEqual(usuario.imagen)
+    const storedUsuario: UsuarioEntity = await repository.findOne({
+      where: { cedula: usuario.cedula },
+    });
+    expect(storedUsuario).not.toBeNull();
+    expect(storedUsuario.nombre).toEqual(usuario.nombre);
+    expect(storedUsuario.imagen).toEqual(usuario.imagen);
   });
 
   //Prueba para el metodo update con cedula inexistente
   it('update deberia retornar exception para un usuario no valido', async () => {
     let usuario: UsuarioEntity = usuariosList[0];
     usuario = {
-      ...usuario, nombre: "Nuevo nombre", imagen: faker.image.avatar()
-    }
-    expect(() => service.update("0", usuario)).rejects.toHaveProperty("message", "El usuario con la cedula dada no fue encontrado")
+      ...usuario,
+      nombre: 'Nuevo nombre',
+      imagen: faker.image.avatar(),
+    };
+    expect(() => service.update('0', usuario)).rejects.toHaveProperty(
+      'message',
+      'El usuario con la cedula dada no fue encontrado',
+    );
   });
 
   //Prueba para el metodo delete
   it('delete deberia eliminar un usuario', async () => {
     const usuario: UsuarioEntity = usuariosList[0];
     await service.delete(usuario.cedula);
-    const deletedUsuario: UsuarioEntity = await repository.findOne({where: {cedula: usuario.cedula}})
-    expect(deletedUsuario).toBeNull()
+    const deletedUsuario: UsuarioEntity = await repository.findOne({
+      where: { cedula: usuario.cedula },
+    });
+    expect(deletedUsuario).toBeNull();
   });
 
   //Prueba para el metodo delete con cedula inexistente
   it('delete deberia retornar exception para un usuario no valido', async () => {
     const usuario: UsuarioEntity = usuariosList[0];
-    await expect(() => service.delete("0")).rejects.toHaveProperty("message", "El usuario con la cedula dada no fue encontrado")
+    await expect(() => service.delete('0')).rejects.toHaveProperty(
+      'message',
+      'El usuario con la cedula dada no fue encontrado',
+    );
   });
 });
