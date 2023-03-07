@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { PedidoEntity } from './pedido.entity';
 import { PedidoService } from './pedido.service';
 import { faker } from '@faker-js/faker';
-import { UsuarioEntity } from 'src/usuario/usuario.entity';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 
 describe('PedidoService', () => {
   let service: PedidoService;
@@ -66,7 +66,7 @@ describe('PedidoService', () => {
   it('findOne deberia retornar exception para un pedido no valido', async () => {
     await expect(() => service.findOne('0')).rejects.toHaveProperty(
       'message',
-      'El pedido con el id dado no fue encontrado',
+      'The pedido with the given id was not found',
     );
   });
 
@@ -126,7 +126,7 @@ describe('PedidoService', () => {
     };
     expect(() => service.update('0', pedido)).rejects.toHaveProperty(
       'message',
-      'El pedido con el id dado no fue encontrado',
+      'The pedido with the given id was not found',
     );
   });
 
@@ -145,7 +145,7 @@ describe('PedidoService', () => {
     const pedido: PedidoEntity = pedidosList[0];
     await expect(() => service.delete('0')).rejects.toHaveProperty(
       'message',
-      'El pedido con el id dado no fue encontrado',
+      'The pedido with the given id was not found',
     );
   });
 });

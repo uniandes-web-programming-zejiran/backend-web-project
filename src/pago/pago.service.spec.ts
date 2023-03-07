@@ -7,7 +7,7 @@ import { PagoEntity } from './pago.entity';
 import { PagoService } from './pago.service';
 
 import { faker } from '@faker-js/faker';
-import { PedidoEntity } from 'src/pedido/pedido.entity';
+import { PedidoEntity } from '../pedido/pedido.entity';
 
 describe('PagoService', () => {
   let service: PagoService;
@@ -61,7 +61,7 @@ describe('PagoService', () => {
   it('findOne deberia mandar exception para un pago invalido', async () => {
     await expect(() => service.findOne('0')).rejects.toHaveProperty(
       'message',
-      'The pago with the given id was not found',
+      'El pago con el id dado no fue encontrado',
     );
   });
 
@@ -106,7 +106,7 @@ describe('PagoService', () => {
     };
     await expect(() => service.update('0', pago)).rejects.toHaveProperty(
       'message',
-      'The pago with the given id was not found',
+      'El pago con el id dado no fue encontrado',
     );
   });
 
@@ -125,7 +125,7 @@ describe('PagoService', () => {
     await service.delete(pago.id);
     await expect(() => service.delete('0')).rejects.toHaveProperty(
       'message',
-      'The pago with the given id was not found',
+      'El pago con el id dado no fue encontrado',
     );
   });
 });
