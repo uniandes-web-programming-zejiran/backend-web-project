@@ -16,14 +16,14 @@ export class PagoService {
 
   async findAll(): Promise<PagoEntity[]> {
     return await this.pagoRepository.find({
-      relations: ['pedidos'],
+      relations: ['pedido'],
     });
   }
 
   async findOne(id: string): Promise<PagoEntity> {
     const pago: PagoEntity = await this.pagoRepository.findOne({
       where: { id },
-      relations: ['pedidos'],
+      relations: ['pedido'],
     });
     if (!pago)
       throw new BusinessLogicException(
