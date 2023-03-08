@@ -14,7 +14,7 @@ export class PublicacionEntity {
   cuerpo: string;
 
   @Column()
-  fechaPubliacion: string;
+  fechaPublicacion: string;
 
   @Column()
   imagen: string;
