@@ -17,27 +17,27 @@ export class PublicacionController {
         return await this.publicacionService.findAll();
     }
 
-    @Get(':museumId')
-    async findOne(@Param('museumId') museumId: string) {
-        return await this.publicacionService.findOne(museumId);
+    @Get(':publicacionId')
+    async findOne(@Param('publicacionId') publicacionId: string) {
+        return await this.publicacionService.findOne(publicacionId);
     }
 
     @Post()
-    async create(@Body() museumDto: PublicacionDto) {
-        const museum: PublicacionEntity = plainToInstance(PublicacionEntity, museumDto);
-        return await this.publicacionService.create(museum);
+    async create(@Body() publicacionDto: PublicacionDto) {
+        const publicacion: PublicacionEntity = plainToInstance(PublicacionEntity, publicacionDto);
+        return await this.publicacionService.create(publicacion);
     }
 
-    @Put(':museumId')
-    async update(@Param('museumId') museumId: string, @Body() museumDto: PublicacionDto) {
-        const museum: PublicacionEntity = plainToInstance(PublicacionEntity, museumDto);
-        return await this.publicacionService.update(museumId, museum);
+    @Put(':publicacionId')
+    async update(@Param('publicacionId') publicacionId: string, @Body() publicacionDto: PublicacionDto) {
+        const publicacion: PublicacionEntity = plainToInstance(PublicacionEntity, publicacionDto);
+        return await this.publicacionService.update(publicacionId, publicacion);
     }
 
-    @Delete(':museumId')
+    @Delete(':publicacionId')
     @HttpCode(204)
-    async delete(@Param('museumId') museumId: string) {
-        return await this.publicacionService.delete(museumId);
+    async delete(@Param('publicacionId') publicacionId: string) {
+        return await this.publicacionService.delete(publicacionId);
     }
 
 }
