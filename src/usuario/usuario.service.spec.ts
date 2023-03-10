@@ -36,6 +36,7 @@ describe('UsuarioService', () => {
     usuariosList = [];
     for (let i = 0; i < 5; i++) {
       const usuario: UsuarioEntity = await repository.save({
+        id: faker.datatype.uuid(),
         cedula: faker.random.numeric(10).toString(),
         nombre: faker.name.firstName(),
         fechaInscripcion: faker.date.past().toString(),
@@ -54,9 +55,9 @@ describe('UsuarioService', () => {
   });
 
   //Prueba para el metodo findOne
-  it('findOne deberia retornar un usuario por cedula', async () => {
+  it('findOne deberia retornar un usuario por id', async () => {
     const storedUsuario: UsuarioEntity = usuariosList[0];
-    const usuario: UsuarioEntity = await service.findOne(storedUsuario.cedula);
+    const usuario: UsuarioEntity = await service.findOne(storedUsuario.id);
     expect(usuario).not.toBeNull();
     expect(usuario.cedula).toEqual(storedUsuario.cedula);
     expect(usuario.nombre).toEqual(storedUsuario.nombre);
@@ -65,17 +66,18 @@ describe('UsuarioService', () => {
     expect(usuario.imagen).toEqual(storedUsuario.imagen);
   });
 
-  //Prueba metodo findOne con cedula inexistente
+  //Prueba metodo findOne con id inexistente
   it('findOne deberia retornar exception para un usuario no valido', async () => {
     await expect(() => service.findOne('0')).rejects.toHaveProperty(
       'message',
-      'El usuario con la cedula dada no fue encontrado',
+      'El usuario con la id dada no fue encontrado',
     );
   });
 
   //Prueba para el metodo create
   it('create deberia crear un usuario', async () => {
     const usuario: UsuarioEntity = {
+      id: faker.datatype.uuid(),
       cedula: faker.random.numeric(10).toString(),
       nombre: faker.name.firstName(),
       fechaInscripcion: faker.date.past().toString(),
@@ -89,7 +91,7 @@ describe('UsuarioService', () => {
     expect(newUsuario).not.toBeNull();
 
     const storedUsuario: UsuarioEntity = await repository.findOne({
-      where: { cedula: newUsuario.cedula },
+      where: { id: newUsuario.id },
     });
     expect(storedUsuario).not.toBeNull();
     expect(storedUsuario.cedula).toEqual(newUsuario.cedula);
@@ -105,19 +107,19 @@ describe('UsuarioService', () => {
     usuario.nombre = 'Nuevo nombre';
     usuario.imagen = faker.image.avatar();
     const updatedUsuario: UsuarioEntity = await service.update(
-      usuario.cedula,
+      usuario.id,
       usuario,
     );
     expect(updatedUsuario).not.toBeNull();
     const storedUsuario: UsuarioEntity = await repository.findOne({
-      where: { cedula: usuario.cedula },
+      where: { id: usuario.id },
     });
     expect(storedUsuario).not.toBeNull();
     expect(storedUsuario.nombre).toEqual(usuario.nombre);
     expect(storedUsuario.imagen).toEqual(usuario.imagen);
   });
 
-  //Prueba para el metodo update con cedula inexistente
+  //Prueba para el metodo update con id inexistente
   it('update deberia retornar exception para un usuario no valido', async () => {
     let usuario: UsuarioEntity = usuariosList[0];
     usuario = {
@@ -127,26 +129,26 @@ describe('UsuarioService', () => {
     };
     expect(() => service.update('0', usuario)).rejects.toHaveProperty(
       'message',
-      'El usuario con la cedula dada no fue encontrado',
+      'El usuario con la id dada no fue encontrado',
     );
   });
 
   //Prueba para el metodo delete
   it('delete deberia eliminar un usuario', async () => {
     const usuario: UsuarioEntity = usuariosList[0];
-    await service.delete(usuario.cedula);
+    await service.delete(usuario.id);
     const deletedUsuario: UsuarioEntity = await repository.findOne({
-      where: { cedula: usuario.cedula },
+      where: { id: usuario.id },
     });
     expect(deletedUsuario).toBeNull();
   });
 
-  //Prueba para el metodo delete con cedula inexistente
+  //Prueba para el metodo delete con id inexistente
   it('delete deberia retornar exception para un usuario no valido', async () => {
     const usuario: UsuarioEntity = usuariosList[0];
     await expect(() => service.delete('0')).rejects.toHaveProperty(
       'message',
-      'El usuario con la cedula dada no fue encontrado',
+      'El usuario con la id dada no fue encontrado',
     );
   });
 });

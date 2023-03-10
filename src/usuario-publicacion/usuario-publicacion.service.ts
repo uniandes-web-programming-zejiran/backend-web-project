@@ -23,25 +23,25 @@ export class UsuarioPublicacionService {
             throw new BusinessLogicException("La publicacion con el id dado no fue encontrada", BusinessError.NOT_FOUND);
         }
 
-        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {cedula: idUsuario}, relations: ["publicaciones", "pedidos", "reviews"]});
+        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["publicaciones", "pedidos", "reviews"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la cedula dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         usuario.publicaciones = [...usuario.publicaciones, publicacion];
         return await this.usuarioRepository.save(usuario);
     }
 
-    //Encontrar todas las publicaciones de un usuario por su cedula y el id de la publicacion
+    //Encontrar todas las publicaciones de un usuario por su id y el id de la publicacion
     async findPublicacionByUsuarioIdPublicacionId(idUsuario: string, idPublicacion: string) {
         const publicacion: PublicacionEntity = await this.publicacionRepository.findOne({where: {id: idPublicacion}});
         if(!publicacion) {
             throw new BusinessLogicException("La publicacion con el id dado no fue encontrada", BusinessError.NOT_FOUND);
         }
 
-        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {cedula: idUsuario}, relations: ["publicaciones"]});
+        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["publicaciones"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la cedula dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         const usuarioPublicacion: PublicacionEntity = usuario.publicaciones.find(e => e.id === publicacion.id);
@@ -52,20 +52,20 @@ export class UsuarioPublicacionService {
         return usuarioPublicacion;
     }
 
-    //Encontrar todas las publicaciones de un usuario por su cedula
+    //Encontrar todas las publicaciones de un usuario por su id
     async findPublicacionByUsuarioId(idUsuario: string) {
-        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {cedula: idUsuario}, relations: ["publicaciones"]});
+        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["publicaciones"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la cedula dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
         }
         return usuario.publicaciones;
     }
 
     // Asociar un arreglo de publicaciones a un usuario
     async associatePublicacionUsuario(idUsuario: string, publicaciones: PublicacionEntity[]): Promise<UsuarioEntity> {
-        const usaurio: UsuarioEntity = await this.usuarioRepository.findOne({where: {cedula: idUsuario}, relations: ["publicaciones"]});
+        const usaurio: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["publicaciones"]});
         if(!usaurio) {
-            throw new BusinessLogicException("El usuario con la cedula dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         for (let i = 0; i < publicaciones.length; i++) {
@@ -86,9 +86,9 @@ export class UsuarioPublicacionService {
             throw new BusinessLogicException("La publicacion con el id dado no fue encontrada", BusinessError.NOT_FOUND);
         }
 
-        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {cedula: idUsuario}, relations: ["publicaciones"]});
+        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["publicaciones"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la cedula dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         const usuarioPublicacion: PublicacionEntity = usuario.publicaciones.find(e => e.id === publicacion.id);
