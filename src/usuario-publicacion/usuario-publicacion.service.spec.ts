@@ -75,7 +75,7 @@ describe('UsuarioPublicacionService', () => {
       imagen: faker.image.avatar()
     })
 
-    const result: UsuarioEntity = await service.addPublicacionUsuario(newUsuario.cedula, newPublicacion.id);
+    const result: UsuarioEntity = await service.addPublicacionUsuario(newUsuario.id, newPublicacion.id);
     expect(result.publicaciones.length).toBe(1);
     expect(result.publicaciones[0]).not.toBeNull();
     expect(result.publicaciones[0].titulo).toBe(newPublicacion.titulo)
@@ -95,7 +95,7 @@ describe('UsuarioPublicacionService', () => {
       imagen: faker.image.avatar()
     })
 
-    await expect(() => service.addPublicacionUsuario(newUsuario.cedula, "0")).rejects.toHaveProperty("message", "La publicacion con el id dado no fue encontrada");
+    await expect(() => service.addPublicacionUsuario(newUsuario.id, "0")).rejects.toHaveProperty("message", "La publicacion con el id dado no fue encontrada");
   });
 
   //Prueba para el metodo addPublicacionUsuario con un usuario invalido
@@ -107,13 +107,13 @@ describe('UsuarioPublicacionService', () => {
       imagen: faker.image.avatar()
     })
 
-    await expect(() => service.addPublicacionUsuario("0", newPublicacion.id)).rejects.toHaveProperty("message", "El usuario con la cedula dada no fue encontrado");
+    await expect(() => service.addPublicacionUsuario("0", newPublicacion.id)).rejects.toHaveProperty("message", "El usuario con la id dada no fue encontrado");
   });
 
   //Prueba para el metodo findPublicacionByUsuarioIdPublicacionId
   it('findPublicacionByUsuarioIdPublicacionId deberia retornar una publicacion', async () => {
     const publicacion: PublicacionEntity = publicacionesList[0];
-    const storedPublicacion: PublicacionEntity = await service.findPublicacionByUsuarioIdPublicacionId(usuario.cedula, publicacion.id);
+    const storedPublicacion: PublicacionEntity = await service.findPublicacionByUsuarioIdPublicacionId(usuario.id, publicacion.id);
     expect(storedPublicacion).not.toBeNull();
     expect(storedPublicacion.titulo).toBe(publicacion.titulo);
     expect(storedPublicacion.cuerpo).toBe(publicacion.cuerpo);
@@ -123,13 +123,13 @@ describe('UsuarioPublicacionService', () => {
 
   //Prueba para el metodo findPublicacionByUsuarioIdPublicacionId con una publicacion invalida
   it('findPublicacionByUsuarioIdPublicacionId deberia lanzar una excepcion si la publicacion no existe', async () => {
-    await expect(() => service.findPublicacionByUsuarioIdPublicacionId(usuario.cedula, "0")).rejects.toHaveProperty("message", "La publicacion con el id dado no fue encontrada");
+    await expect(() => service.findPublicacionByUsuarioIdPublicacionId(usuario.id, "0")).rejects.toHaveProperty("message", "La publicacion con el id dado no fue encontrada");
   });
 
   //Prueba para el metodo findPublicacionByUsuarioIdPublicacionId con un usuario invalido
   it('findPublicacionByUsuarioIdPublicacionId deberia lanzar una excepcion si el usuario no existe', async () => {
     const publicacion: PublicacionEntity = publicacionesList[0];
-    await expect(() => service.findPublicacionByUsuarioIdPublicacionId("0", publicacion.id)).rejects.toHaveProperty("message", "El usuario con la cedula dada no fue encontrado");
+    await expect(() => service.findPublicacionByUsuarioIdPublicacionId("0", publicacion.id)).rejects.toHaveProperty("message", "El usuario con la id dada no fue encontrado");
   });
 
   //Prueba para el metodo findAllPublicacionesByUsuarioId con una publicacion no asociada a un usuario
@@ -140,18 +140,18 @@ describe('UsuarioPublicacionService', () => {
       fechaPublicacion: faker.date.past().toString(),
       imagen: faker.image.avatar()
     });
-    await expect(() => service.findPublicacionByUsuarioIdPublicacionId(usuario.cedula, newPublicacion.id)).rejects.toHaveProperty("message", "Publicacion con el id dado no está asociada al usuario");
+    await expect(() => service.findPublicacionByUsuarioIdPublicacionId(usuario.id, newPublicacion.id)).rejects.toHaveProperty("message", "Publicacion con el id dado no está asociada al usuario");
   });
 
   //Prueba para el metodo findPublicacionesByUsuarioId
   it('findPublicacionesByUsuarioId deberia retornar todas las publicaciones de un usuario', async () => {
-    const publicaciones: PublicacionEntity[] = await service.findPublicacionByUsuarioId(usuario.cedula);
+    const publicaciones: PublicacionEntity[] = await service.findPublicacionByUsuarioId(usuario.id);
     expect(publicaciones.length).toBe(5);
   });
 
   //Prueba para el metodo findpUblicacionesByUsuarioId con un usuario invalido
   it('findPublicacionesByUsuarioId deberia lanzar una excepcion si el usuario no existe', async () => {
-    await expect(() => service.findPublicacionByUsuarioId("0")).rejects.toHaveProperty("message", "El usuario con la cedula dada no fue encontrado");
+    await expect(() => service.findPublicacionByUsuarioId("0")).rejects.toHaveProperty("message", "El usuario con la id dada no fue encontrado");
   });
 
   //Prueba para el metodo assosiatePublicacionUsuario con update 
@@ -163,7 +163,7 @@ describe('UsuarioPublicacionService', () => {
       imagen: faker.image.avatar()
     });
 
-    const updatedUsuario: UsuarioEntity = await service.associatePublicacionUsuario(usuario.cedula, [newPublicacion]);
+    const updatedUsuario: UsuarioEntity = await service.associatePublicacionUsuario(usuario.id, [newPublicacion]);
     expect(updatedUsuario.publicaciones.length).toBe(1);
 
     expect(updatedUsuario.publicaciones[0].titulo).toBe(newPublicacion.titulo);
@@ -181,7 +181,7 @@ describe('UsuarioPublicacionService', () => {
       imagen: faker.image.avatar()
     });
 
-    await expect(() => service.associatePublicacionUsuario("0", [newPublicacion])).rejects.toHaveProperty("message", "El usuario con la cedula dada no fue encontrado");
+    await expect(() => service.associatePublicacionUsuario("0", [newPublicacion])).rejects.toHaveProperty("message", "El usuario con la id dada no fue encontrado");
   });
 
   //Prueba para el metodo assosiatePublicacionUsuario con update con una publicacion no valida
@@ -189,16 +189,16 @@ describe('UsuarioPublicacionService', () => {
     const newPublicacion: PublicacionEntity = publicacionesList[0];
     newPublicacion.id = "0";
 
-    await expect(() => service.associatePublicacionUsuario(usuario.cedula, [newPublicacion])).rejects.toHaveProperty("message", "La publicacion con el id dado no fue encontrada");
+    await expect(() => service.associatePublicacionUsuario(usuario.id, [newPublicacion])).rejects.toHaveProperty("message", "La publicacion con el id dado no fue encontrada");
   });
 
   //Prueba para el método deletePublicacionUsuario
   it('deletePublicacionUsuario deberia eliminar una publicacion de un usuario', async () => {
     const publicacion: PublicacionEntity = publicacionesList[0];
 
-    await service.deletePublicacionUsuario(usuario.cedula, publicacion.id);
+    await service.deletePublicacionUsuario(usuario.id, publicacion.id);
 
-    const storedUsuario: UsuarioEntity = await usuarioRepository.findOne({ where: { cedula: usuario.cedula }, relations: ['publicaciones'] });
+    const storedUsuario: UsuarioEntity = await usuarioRepository.findOne({ where: { id: usuario.id }, relations: ['publicaciones'] });
     const deletedPublicacion: PublicacionEntity = storedUsuario.publicaciones.find((p) => p.id === publicacion.id);
 
     expect(deletedPublicacion).toBeUndefined();
@@ -206,13 +206,13 @@ describe('UsuarioPublicacionService', () => {
 
   //Prueba para el método deletePublicacionUsuario con una publicacion no valida
   it('deletePublicacionUsuario deberia lanzar una excepcion si la publicacion no existe', async () => {
-    await expect(() => service.deletePublicacionUsuario(usuario.cedula, "0")).rejects.toHaveProperty("message", "La publicacion con el id dado no fue encontrada");
+    await expect(() => service.deletePublicacionUsuario(usuario.id, "0")).rejects.toHaveProperty("message", "La publicacion con el id dado no fue encontrada");
   });
 
   //Prueba para el método deletePublicacionUsuario con un usuario no valido
   it('deletePublicacionUsuario deberia lanzar una excepcion si el usuario no existe', async () => {
     const publicacion: PublicacionEntity = publicacionesList[0];
-    await expect(() => service.deletePublicacionUsuario("0", publicacion.id)).rejects.toHaveProperty("message", "El usuario con la cedula dada no fue encontrado");
+    await expect(() => service.deletePublicacionUsuario("0", publicacion.id)).rejects.toHaveProperty("message", "El usuario con la id dada no fue encontrado");
   });
 
   //Prueba para el método deletePublicacionUsuario con una publicacion no asociada a un usuario
@@ -223,6 +223,6 @@ describe('UsuarioPublicacionService', () => {
       fechaPublicacion: faker.date.past().toString(),
       imagen: faker.image.avatar()
     });
-    await expect(() => service.deletePublicacionUsuario(usuario.cedula, newPublicacion.id)).rejects.toHaveProperty("message", "Publicacion con el id dado no está asociada al usuario");
+    await expect(() => service.deletePublicacionUsuario(usuario.id, newPublicacion.id)).rejects.toHaveProperty("message", "Publicacion con el id dado no está asociada al usuario");
   });
 });

@@ -23,25 +23,25 @@ export class UsuarioPedidoService {
             throw new BusinessLogicException("El pedido con el id dado no fue encontrado", BusinessError.NOT_FOUND);
         }
 
-        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {cedula: idUsuario}, relations: ["publicaciones", "pedidos", "reviews"]});
+        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["publicaciones", "pedidos", "reviews"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la cedula dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         usuario.pedidos = [...usuario.pedidos, pedido];
         return await this.usuarioRepository.save(usuario);
     }
 
-    //Encontrar todos los pedidos de un usuario por su cedula y el id de la pedido
+    //Encontrar todos los pedidos de un usuario por su id y el id de la pedido
     async findPedidoByUsuarioIdPedidoId(idUsuario: string, idPedido: string) {
         const pedido: PedidoEntity = await this.pedidoRepository.findOne({where: {id: idPedido}});
         if(!pedido) {
             throw new BusinessLogicException("El pedido con el id dado no fue encontrado", BusinessError.NOT_FOUND);
         }
 
-        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {cedula: idUsuario}, relations: ["pedidos"]});
+        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["pedidos"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la cedula dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         const usuarioPedido: PedidoEntity = usuario.pedidos.find(e => e.id === pedido.id);
@@ -52,20 +52,20 @@ export class UsuarioPedidoService {
         return usuarioPedido;
     }
 
-    //Encontrar todos los pedidos de un usuario por su cedula
+    //Encontrar todos los pedidos de un usuario por su id
     async findPedidoByUsuarioId(idUsuario: string) {
-        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {cedula: idUsuario}, relations: ["pedidos"]});
+        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["pedidos"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la cedula dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
         }
         return usuario.pedidos;
     }
 
     // Asociar un arreglo de pedidos a un usuario
     async associatePedidoUsuario(idUsuario: string, pedidos: PedidoEntity[]): Promise<UsuarioEntity> {
-        const usaurio: UsuarioEntity = await this.usuarioRepository.findOne({where: {cedula: idUsuario}, relations: ["pedidos"]});
+        const usaurio: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["pedidos"]});
         if(!usaurio) {
-            throw new BusinessLogicException("El usuario con la cedula dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         for (let i = 0; i < pedidos.length; i++) {
@@ -86,9 +86,9 @@ export class UsuarioPedidoService {
             throw new BusinessLogicException("El pedido con el id dado no fue encontrado", BusinessError.NOT_FOUND);
         }
 
-        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {cedula: idUsuario}, relations: ["pedidos"]});
+        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["pedidos"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la cedula dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         const usuarioPedido: PedidoEntity = usuario.pedidos.find(e => e.id === pedido.id);

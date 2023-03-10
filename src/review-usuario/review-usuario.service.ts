@@ -22,7 +22,7 @@ export class ReviewUsuarioService {
     usuarioId: string,
   ): Promise<UsuarioEntity> {
     const usuario: UsuarioEntity = await this.usuarioRepository.findOne({
-      where: { cedula: usuarioId },
+      where: { id: usuarioId },
       relations: ['reviews'],
     });
     if (!usuario)
@@ -49,7 +49,7 @@ export class ReviewUsuarioService {
     usuarioId: string,
   ): Promise<ReviewEntity> {
     const usuario: UsuarioEntity = await this.usuarioRepository.findOne({
-      where: { cedula: usuarioId },
+      where: { id: usuarioId },
       relations: ['reviews'],
     });
     if (!usuario)
@@ -82,7 +82,7 @@ export class ReviewUsuarioService {
 
   async findReviewsByProductId(usuarioId: string): Promise<ReviewEntity[]> {
     const usuario: UsuarioEntity = await this.usuarioRepository.findOne({
-      where: { cedula: usuarioId },
+      where: { id: usuarioId },
       relations: ['reviews'],
     });
     if (!usuario)
@@ -99,7 +99,7 @@ export class ReviewUsuarioService {
     reviews: ReviewEntity[],
   ): Promise<UsuarioEntity> {
     const usuario: UsuarioEntity = await this.usuarioRepository.findOne({
-      where: { cedula: usuarioId },
+      where: { id: usuarioId },
       relations: ['reviews'],
     });
 
@@ -135,7 +135,7 @@ export class ReviewUsuarioService {
       );
 
     const usuario: UsuarioEntity = await this.usuarioRepository.findOne({
-      where: { cedula: usuarioId },
+      where: { id: usuarioId },
       relations: ['reviews'],
     });
     if (!usuario)

@@ -2,11 +2,14 @@
 import { PublicacionEntity } from '../publicacion/publicacion.entity';
 import { PedidoEntity } from '../pedido/pedido.entity';
 import { ReviewEntity } from '../review/review.entity';
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class UsuarioEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column()
   cedula: string;
 
   @Column()

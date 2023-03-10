@@ -22,15 +22,15 @@ export class UsuarioService {
     });
   }
 
-  //Obtener un usuario por su cedula
-  async findOne(cedula: string): Promise<UsuarioEntity> {
+  //Obtener un usuario por su id
+  async findOne(id: string): Promise<UsuarioEntity> {
     const usuario: UsuarioEntity = await this.usuarioRepository.findOne({
-      where: { cedula },
+      where: { id },
       relations: ['reviews', 'publicaciones', 'pedidos'],
     });
     if (!usuario) {
       throw new BusinessLogicException(
-        'El usuario con la cedula dada no fue encontrado',
+        'El usuario con la id dada no fue encontrado',
         BusinessError.NOT_FOUND,
       );
     }
@@ -42,13 +42,13 @@ export class UsuarioService {
     return await this.usuarioRepository.save(usuario);
   }
 
-  //Actualizar un usuario por su cedula
-  async update(cedula: string, usuario: UsuarioEntity): Promise<UsuarioEntity> {
+  //Actualizar un usuario por su id
+  async update(id: string, usuario: UsuarioEntity): Promise<UsuarioEntity> {
     const persistedUsuario: UsuarioEntity =
-      await this.usuarioRepository.findOne({ where: { cedula } });
+      await this.usuarioRepository.findOne({ where: { id } });
     if (!persistedUsuario) {
       throw new BusinessLogicException(
-        'El usuario con la cedula dada no fue encontrado',
+        'El usuario con la id dada no fue encontrado',
         BusinessError.NOT_FOUND,
       );
     }
@@ -58,14 +58,14 @@ export class UsuarioService {
     });
   }
 
-  //Eliminar un usuario por su cedula
-  async delete(cedula: string) {
+  //Eliminar un usuario por su id
+  async delete(id: string) {
     const usuario: UsuarioEntity = await this.usuarioRepository.findOne({
-      where: { cedula },
+      where: { id },
     });
     if (!usuario) {
       throw new BusinessLogicException(
-        'El usuario con la cedula dada no fue encontrado',
+        'El usuario con la id dada no fue encontrado',
         BusinessError.NOT_FOUND,
       );
     }

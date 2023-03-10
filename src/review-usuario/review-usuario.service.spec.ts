@@ -80,7 +80,7 @@ describe('ReviewUsuarioService', () => {
 
     const result: UsuarioEntity = await service.addReviewUsuario(
       newReview.id,
-      newUsuario.cedula,
+      newUsuario.id,
     );
 
     expect(result.reviews).not.toBeNull();
@@ -118,7 +118,7 @@ describe('ReviewUsuarioService', () => {
     });
 
     await expect(() =>
-      service.addReviewUsuario('0', newUsuario.cedula),
+      service.addReviewUsuario('0', newUsuario.id),
     ).rejects.toHaveProperty(
       'message',
       'The review with the given id was not found',
@@ -128,7 +128,7 @@ describe('ReviewUsuarioService', () => {
   it('findReviewByUsuarioIdReviewId should return review by product', async () => {
     const review: ReviewEntity = reviewsList[0];
     const storedReview: ReviewEntity =
-      await service.findReviewByUsuarioIdReviewId(review.id, usuario.cedula);
+      await service.findReviewByUsuarioIdReviewId(review.id, usuario.id);
     expect(storedReview).not.toBeNull();
     expect(storedReview.titulo).toBe(review.titulo);
     expect(storedReview.descripcion).toBe(review.descripcion);
@@ -149,7 +149,7 @@ describe('ReviewUsuarioService', () => {
 
   it('findReviewByUsuarioIdReviewId should throw an exception for an invalid review', async () => {
     await expect(() =>
-      service.findReviewByUsuarioIdReviewId('0', usuario.cedula),
+      service.findReviewByUsuarioIdReviewId('0', usuario.id),
     ).rejects.toHaveProperty(
       'message',
       'The review with the given id was not found',
@@ -166,7 +166,7 @@ describe('ReviewUsuarioService', () => {
     });
 
     await expect(() =>
-      service.findReviewByUsuarioIdReviewId(newReview.id, usuario.cedula),
+      service.findReviewByUsuarioIdReviewId(newReview.id, usuario.id),
     ).rejects.toHaveProperty(
       'message',
       'El review con el id dado no está asociado al usuario',
@@ -175,7 +175,7 @@ describe('ReviewUsuarioService', () => {
 
   it('findReviewsByProductId should return usuarios by product', async () => {
     const reviews: ReviewEntity[] = await service.findReviewsByProductId(
-      usuario.cedula,
+      usuario.id,
     );
     expect(reviews.length).toBe(5);
   });
@@ -199,7 +199,7 @@ describe('ReviewUsuarioService', () => {
     });
 
     const updatedProduct: UsuarioEntity = await service.associateReviewsUsuario(
-      usuario.cedula,
+      usuario.id,
       [newReview],
     );
     expect(updatedProduct.reviews.length).toBe(1);
@@ -233,7 +233,7 @@ describe('ReviewUsuarioService', () => {
     newReview.id = '0';
 
     await expect(() =>
-      service.associateReviewsUsuario(usuario.cedula, [newReview]),
+      service.associateReviewsUsuario(usuario.id, [newReview]),
     ).rejects.toHaveProperty(
       'message',
       'The review with the given id was not found',
@@ -243,10 +243,10 @@ describe('ReviewUsuarioService', () => {
   it('deleteUsuarioToReview should remove a review from a product', async () => {
     const review: ReviewEntity = reviewsList[0];
 
-    await service.deleteReviewUsuario(review.id, usuario.cedula);
+    await service.deleteReviewUsuario(review.id, usuario.id);
 
     const storedUsuario: UsuarioEntity = await usuarioRepository.findOne({
-      where: { cedula: usuario.cedula },
+      where: { id: usuario.id },
       relations: ['reviews'],
     });
     const deletedReview: ReviewEntity = storedUsuario.reviews.find(
@@ -258,7 +258,7 @@ describe('ReviewUsuarioService', () => {
 
   it('deleteUsuarioToReview should thrown an exception for an invalid review', async () => {
     await expect(() =>
-      service.deleteReviewUsuario('0', usuario.cedula),
+      service.deleteReviewUsuario('0', usuario.id),
     ).rejects.toHaveProperty(
       'message',
       'The review with the given id was not found',
@@ -285,7 +285,7 @@ describe('ReviewUsuarioService', () => {
     });
 
     await expect(() =>
-      service.deleteReviewUsuario(newReview.id, usuario.cedula),
+      service.deleteReviewUsuario(newReview.id, usuario.id),
     ).rejects.toHaveProperty(
       'message',
       'El review con el id dado no está asociado al usuario',
