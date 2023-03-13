@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IsDate, IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import {  IsNotEmpty, IsString } from 'class-validator';
 export class EventoDto {
   @IsString()
   @IsNotEmpty()
@@ -13,11 +13,11 @@ export class EventoDto {
   @IsNotEmpty()
   readonly lugar: string;
 
-  @IsDate()
+  @IsString()
   @IsNotEmpty()
   readonly fecha: string;
 
-  @IsUrl()
+  @IsString()
   @IsNotEmpty()
   readonly imagen: string;
 }
