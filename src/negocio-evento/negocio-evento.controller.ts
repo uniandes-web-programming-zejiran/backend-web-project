@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { EventoDto } from '../evento/evento.dto';
 import { EventoEntity } from '../evento/evento.entity';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { NegocioEventoService } from './negocio-evento.service';
@@ -25,11 +26,11 @@ export class NegocioEventoController {
        return await this.negocioEventoService.findEventosByNegocioId(negocioId);
     }
 
-    //@Put(':negocioId/eventos')
-    //async associateEventosNegocio(@Body() eventosDto: EventoDto[], @Param('negocioId') negocioId: string){
-    //   const eventos = plainToInstance(EventoEntity, eventosDto)
-    //   return await this.negocioEventoService.associateEventosNegocio(negocioId, eventos);
-    //}
+    @Put(':negocioId/eventos')
+    async associateEventosNegocio(@Body() eventosDto: EventoDto[], @Param('negocioId') negocioId: string){
+       const eventos = plainToInstance(EventoEntity, eventosDto)
+       return await this.negocioEventoService.associateEventosNegocio(negocioId, eventos);
+    }
 
     @Delete(':negocioId/eventos/:eventoId')
     @HttpCode(204)
