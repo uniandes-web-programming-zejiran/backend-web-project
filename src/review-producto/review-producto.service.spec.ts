@@ -174,7 +174,7 @@ describe('ReviewProductoService', () => {
   });
 
   it('findReviewsByProductId should return productos by product', async () => {
-    const reviews: ReviewEntity[] = await service.findReviewsByProductId(
+    const reviews: ReviewEntity[] = await service.findReviewsByProductoId(
       producto.id,
     );
     expect(reviews.length).toBe(5);
@@ -182,7 +182,7 @@ describe('ReviewProductoService', () => {
 
   it('findReviewsByProductId should throw an exception for an invalid product', async () => {
     await expect(() =>
-      service.findReviewsByProductId('0'),
+      service.findReviewsByProductoId('0'),
     ).rejects.toHaveProperty(
       'message',
       'El producto con el id dado no fue encontrado',
