@@ -1,8 +1,7 @@
 /* eslint-disable prettier/prettier */
 import {
-  IsDate,
-  IsDecimal,
   IsNotEmpty,
+  IsNumber,
   IsString,
   IsUrl,
 } from 'class-validator';
@@ -15,7 +14,7 @@ export class ReviewDto {
   @IsNotEmpty()
   readonly descripcion: string;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   readonly puntaje: string;
 
@@ -23,7 +22,7 @@ export class ReviewDto {
   @IsNotEmpty()
   readonly imagen: string;
 
-  @IsDate()
+  @IsString()
   @IsNotEmpty()
   readonly fecha: string;
 }
