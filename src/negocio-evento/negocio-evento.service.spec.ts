@@ -38,7 +38,7 @@ describe('NegocioEventoService', () => {
     eventosList = [];
     for (let i = 0; i < 5; i++) {
       const evento: EventoEntity = await eventoRepository.save({
-        titulo: faker.company.companyName(),
+        titulo: faker.company.name(),
         objetivo: faker.lorem.sentence(),
         lugar: faker.lorem.sentence(),
         fecha: faker.lorem.sentence(),
@@ -48,7 +48,7 @@ describe('NegocioEventoService', () => {
     }
 
     negocio = await negocioRepository.save({
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       tipo: faker.lorem.sentence(),
       ubicacion: faker.lorem.sentence(),
       fechaCreacion: faker.lorem.sentence(),
@@ -63,7 +63,7 @@ describe('NegocioEventoService', () => {
 
   it('addEventoNegocio should add an evento to a negocio', async () => {
     const newEvento: EventoEntity = await eventoRepository.save({
-      titulo: faker.company.companyName(),
+      titulo: faker.company.name(),
       objetivo: faker.lorem.sentence(),
       lugar: faker.lorem.sentence(),
       fecha: faker.lorem.sentence(),
@@ -71,7 +71,7 @@ describe('NegocioEventoService', () => {
     });
 
     const newNegocio: NegocioEntity = await negocioRepository.save({
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       tipo: faker.lorem.sentence(),
       ubicacion: faker.lorem.sentence(),
       fechaCreacion: faker.lorem.sentence(),
@@ -94,7 +94,7 @@ describe('NegocioEventoService', () => {
 
   it('addEventoNegocio should thrown exception for an invalid evento', async () => {
     const newNegocio: NegocioEntity = await negocioRepository.save({
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       tipo: faker.lorem.sentence(),
       ubicacion: faker.lorem.sentence(),
       fechaCreacion: faker.lorem.sentence(),
@@ -111,7 +111,7 @@ describe('NegocioEventoService', () => {
 
   it('addEventoNegocio should throw an exception for an invalid negocio', async () => {
     const newEvento: EventoEntity = await eventoRepository.save({
-      titulo: faker.company.companyName(),
+      titulo: faker.company.name(),
       objetivo: faker.lorem.sentence(),
       lugar: faker.lorem.sentence(),
       fecha: faker.lorem.sentence(),
@@ -159,7 +159,7 @@ describe('NegocioEventoService', () => {
 
   it('findEventoByNegocioIdEventoId should throw an exception for an evento not associated to the negocio', async () => {
     const newEvento: EventoEntity = await eventoRepository.save({
-      titulo: faker.company.companyName(),
+      titulo: faker.company.name(),
       objetivo: faker.lorem.sentence(),
       lugar: faker.lorem.sentence(),
       fecha: faker.lorem.sentence(),
@@ -192,7 +192,7 @@ describe('NegocioEventoService', () => {
 
   it('associateEventosNegocio should update eventos list for a negocio', async () => {
     const newEvento: EventoEntity = await eventoRepository.save({
-      titulo: faker.company.companyName(),
+      titulo: faker.company.name(),
       objetivo: faker.lorem.sentence(),
       lugar: faker.lorem.sentence(),
       fecha: faker.lorem.sentence(),
@@ -214,7 +214,7 @@ describe('NegocioEventoService', () => {
 
   it('associateEventosNegocio should throw an exception for an invalid negocio', async () => {
     const newEvento: EventoEntity = await eventoRepository.save({
-      titulo: faker.company.companyName(),
+      titulo: faker.company.name(),
       objetivo: faker.lorem.sentence(),
       lugar: faker.lorem.sentence(),
       fecha: faker.lorem.sentence(),
@@ -278,7 +278,7 @@ describe('NegocioEventoService', () => {
 
   it('deleteEventoToNegocio should thrown an exception for an non asocciated evento', async () => {
     const newEvento: EventoEntity = await eventoRepository.save({
-      titulo: faker.company.companyName(),
+      titulo: faker.company.name(),
       objetivo: faker.lorem.sentence(),
       lugar: faker.lorem.sentence(),
       fecha: faker.lorem.sentence(),

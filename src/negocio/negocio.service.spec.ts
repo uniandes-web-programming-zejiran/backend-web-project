@@ -31,7 +31,7 @@ describe('NegocioService', () => {
     negociosList = [];
     for (let i = 0; i < 5; i++) {
       const negocio: NegocioEntity = await repository.save({
-        nombre: faker.company.companyName(),
+        nombre: faker.company.name(),
         tipo: faker.lorem.sentence(),
         ubicacion: faker.lorem.sentence(),
         fechaCreacion: faker.lorem.sentence(),
@@ -72,7 +72,7 @@ describe('NegocioService', () => {
   it('create deberia retornar un negocio', async () => {
     const negocio: NegocioEntity = {
       id: '',
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       tipo: faker.lorem.sentence(),
       ubicacion: faker.lorem.sentence(),
       fechaCreacion: faker.lorem.sentence(),
