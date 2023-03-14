@@ -1,0 +1,1689 @@
+{
+	"info": {
+		"_postman_id": "fcd9d219-c2f9-41fb-bae6-8521d782d6e3",
+		"name": "Negocio-Evento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25914771"
+	},
+	"item": [
+		{
+			"name": "Agregar negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"negocio_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"FrutiEcologica\",\r\n   \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n   \"tipo\": \"Alimentos\",\r\n   \"ubicacion\": \"Calle 36 #28-16\",\r\n   \"fechaCreacion\": \"20 de Agosto del 2022\",\r\n   \"imagen\": \"www.negocios.com/negocio.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/negocios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios"
+					]
+				},
+				"description": "Esta peticion agrega un negocio."
+			},
+			"response": [
+				{
+					"name": "Agregar negocio",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d\",\r\n   \"nombre\": \"FrutiEcologica\",\r\n   \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n   \"tipo\": \"Alimentos\",\r\n   \"ubicacion\": \"Calle 36 #28-16\",\r\n   \"fechaCreacion\": \"20 de Agosto del 2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Agregar un evento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"evento_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"titulo\": \"Conferencia de Desarrollo Web\",\n  \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n  \"lugar\": \"Centro de Convenciones de la Ciudad\",\n  \"fecha\": \"2023-05-15\",\n  \"imagen\": \"https://ejemplo.com/imagen.png\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/eventos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventos",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar un evento",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Conferencia de Desarrollo Web\",\n  \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n  \"lugar\": \"Centro de Convenciones de la Ciudad\",\n  \"fecha\": \"2023-05-15\",\n  \"imagen\": \"https://ejemplo.com/imagen.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1234,\n    \"titulo\": \"Conferencia de Desarrollo Web\",\n    \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n    \"lugar\": \"Centro de Convenciones de la Ciudad\",\n    \"fecha\": \"2023-05-15\",\n    \"imagen\": \"https://ejemplo.com/imagen.png\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar un evento 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"evento_id2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"titulo\": \"Conferencia de Desarrollo Web\",\n  \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n  \"lugar\": \"Centro de Convenciones de la Ciudad\",\n  \"fecha\": \"2023-05-15\",\n  \"imagen\": \"https://ejemplo.com/imagen.png\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/eventos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventos",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar un evento",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Conferencia de Desarrollo Web\",\n  \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n  \"lugar\": \"Centro de Convenciones de la Ciudad\",\n  \"fecha\": \"2023-05-15\",\n  \"imagen\": \"https://ejemplo.com/imagen.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1234,\n    \"titulo\": \"Conferencia de Desarrollo Web\",\n    \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n    \"lugar\": \"Centro de Convenciones de la Ciudad\",\n    \"fecha\": \"2023-05-15\",\n    \"imagen\": \"https://ejemplo.com/imagen.png\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar evento a negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/{{evento_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}",
+						"eventos",
+						"{{evento_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar evento a negocio",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d\",\r\n   \"nombre\": \"FrutiEcologica\",\r\n   \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n   \"tipo\": \"Alimentos\",\r\n   \"ubicacion\": \"Calle 36 #28-16\",\r\n   \"fechaCreacion\": \"20 de Agosto del 2022\",\r\n   \"productos\":[],\r\n   \"eventos\": [\r\n       {\r\n           \"id\": \"1\",\r\n           \"titulo\": \"Evento GoBusiness\",\r\n           \"objetivo\": \"Unir a la empresa con sus clientes\",\r\n           \"lugar\": \"Calle 223 #47-33\",\r\n           \"fecha\": \"11 de Mayo, 2022\",\r\n           \"imagen\": \"evento.png\"\r\n       }\r\n   ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/{evento_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}",
+								"eventos",
+								"{evento_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Agregar evento que no existe a negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El evento con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}",
+						"eventos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar evento que no existe a negocio",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El evento no existe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}",
+								"eventos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Agregar evento a negocio que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El negocio con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000/eventos/{{evento_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"00000000-0000-0000-0000-000000000000",
+						"eventos",
+						"{{evento_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar evento a negocio que no existe",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El negocio no existe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000/eventos/{{evento_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"00000000-0000-0000-0000-000000000000",
+								"eventos",
+								"{{evento_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Obtener un evento de un negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/{{evento_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}",
+						"eventos",
+						"{{evento_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un evento de un negocio",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "       {\r\n           \"id\": \"1\",\r\n           \"titulo\": \"Evento GoBusiness\",\r\n           \"objetivo\": \"Unir a la empresa con sus clientes\",\r\n           \"lugar\": \"Calle 223 #47-33\",\r\n           \"fecha\": \"11 de Mayo, 2022\",\r\n           \"imagen\": \"evento.png\"\r\n       }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/{{evento_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}",
+								"eventos",
+								"{{evento_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Obtener un evento que no existe de un negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El evento con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}",
+						"eventos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un evento que no existe de un negocio",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El evento no existe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}",
+								"eventos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Obtener un evento de un negocio que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El negocio con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000/eventos/{{evento_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"00000000-0000-0000-0000-000000000000",
+						"eventos",
+						"{{evento_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un evento de un negocio que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El negocio no existe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000/eventos/{{evento_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"00000000-0000-0000-0000-000000000000",
+								"eventos",
+								"{{evento_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Obtener un evento que no esta asociado al negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El evento con el id dado no esta asociado al negocio\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/{{evento_id2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}",
+						"eventos",
+						"{{evento_id2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un evento que no esta asociado al negocio",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 412,\r\n   \"message\": \"El evento no esta asociado al negocio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/{{evento_id2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}",
+								"eventos",
+								"{{evento_id2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Obtener los eventos de un negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}",
+						"eventos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener los eventos de un negocio",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n       {\r\n           \"id\": \"1\",\r\n           \"titulo\": \"Evento GoBusiness\",\r\n           \"objetivo\": \"Unir a la empresa con sus clientes\",\r\n           \"lugar\": \"Calle 223 #47-33\",\r\n           \"fecha\": \"11 de Mayo, 2022\",\r\n           \"imagen\": \"evento.png\"\r\n       }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}",
+								"eventos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Obtener los eventos de un negocio que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El negocio con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000/eventos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"00000000-0000-0000-0000-000000000000",
+						"eventos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener los eventos de un negocio que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El negocio no existe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000/eventos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"00000000-0000-0000-0000-000000000000",
+								"eventos"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Actualizar la lista de eventos de un negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{evento_id2}}\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}",
+						"eventos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar la lista de eventos de un negocio",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d\",\r\n   \"nombre\": \"FrutiEcologica\",\r\n   \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n   \"tipo\": \"Alimentos\",\r\n   \"ubicacion\": \"Calle 36 #28-16\",\r\n   \"fechaCreacion\": \"20 de Agosto del 2022\",\r\n   \"productos\":[],\r\n   \"eventos\": [\r\n       {\r\n           \"id\": \"2\",\r\n           \"titulo\": \"Evento GoBusiness2\",\r\n           \"objetivo\": \"Unir a la empresa con sus clientes\",\r\n           \"lugar\": \"Calle 223 #47-33\",\r\n           \"fecha\": \"11 de Mayo, 2022\",\r\n           \"imagen\": \"evento.png\"\r\n       }\r\n   ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}",
+								"eventos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Actualizar los eventos de un negocio que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El negocio con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{evento_id2}}\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000/eventos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"00000000-0000-0000-0000-000000000000",
+						"eventos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar los eventos de un negocio que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El negocio no existe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000/eventos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"00000000-0000-0000-0000-000000000000",
+								"eventos"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Actualizar un evento que no existe a un negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El evento con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"00000000-0000-0000-0000-000000000000\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}",
+						"eventos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un evento que no existe a un negocio",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El evento no existe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}",
+								"eventos"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un evento de un negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/{{evento_id2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}",
+						"eventos",
+						"{{evento_id2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un evento de un negocio",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/{{evento_id2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}",
+								"eventos",
+								"{{evento_id2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un evento que no existe de un negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El evento con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}",
+						"eventos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un evento que no existe de un negocio",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El evento no existe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}",
+								"eventos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un evento de un negocio que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El negocio con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000/eventos/{{evento_id2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"00000000-0000-0000-0000-000000000000",
+						"eventos",
+						"{{evento_id2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un evento de un negocio que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El negocio no existe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000/eventos/{{evento_id2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"00000000-0000-0000-0000-000000000000",
+								"eventos",
+								"{{evento_id2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un evento no asociado a un negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El evento con el id dado no esta asociado al negocio\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/{{evento_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}",
+						"eventos",
+						"{{evento_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un evento no asociado a un negocio",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 412,\r\n   \"message\": \"El evento no esta asociado al negocio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}/eventos/{{evento_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}",
+								"eventos",
+								"{{evento_id}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un evento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventos/{{evento_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventos",
+						"{{evento_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un evento",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/reviews/{{event_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reviews",
+								"{{event_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un evento 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventos/{{evento_id2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventos",
+						"{{evento_id2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un evento",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/reviews/{{event_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reviews",
+								"{{event_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un negocio",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}
