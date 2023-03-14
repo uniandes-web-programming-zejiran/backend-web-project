@@ -1,20 +1,20 @@
 {
 	"info": {
-		"_postman_id": "8b32674e-4cf3-4fb4-8fc0-52f5346cac1c",
-		"name": "Review",
+		"_postman_id": "09fbee18-3090-4c1f-a2f5-50a7c6c52435",
+		"name": "Evento",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "11708390"
 	},
 	"item": [
 		{
-			"name": "Agregar review",
+			"name": "Agregar un evento",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()",
-							"pm.globals.set(\"review_id\", data.id);",
+							"pm.globals.set(\"event_id\", data.id);",
 							"",
 							"pm.test(\"Status code is 201\", function () {",
 							"   pm.response.to.have.status(201);",
@@ -29,7 +29,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"titulo\": \"Mi opinión sobre el producto\",\n  \"descripcion\": \"He estado usando este producto durante varias semanas y estoy muy satisfecho con su rendimiento. Lo recomiendo encarecidamente a cualquiera que busque un producto similar.\",\n  \"puntaje\": 4.5,\n  \"imagen\": \"https://ejemplo.com/imagen.png\",\n  \"fecha\": \"2023-02-21\"\n}\n",
+					"raw": "{\n  \"titulo\": \"Conferencia de Desarrollo Web\",\n  \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n  \"lugar\": \"Centro de Convenciones de la Ciudad\",\n  \"fecha\": \"2023-05-15\",\n  \"imagen\": \"https://ejemplo.com/imagen.png\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -37,25 +37,25 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/reviews/",
+					"raw": "{{baseUrl}}/eventos/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"reviews",
+						"eventos",
 						""
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Agregar review",
+					"name": "Agregar un evento",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"titulo\": \"Mi opinión sobre el producto\",\n  \"descripcion\": \"He estado usando este producto durante varias semanas y estoy muy satisfecho con su rendimiento. Lo recomiendo encarecidamente a cualquiera que busque un producto similar.\",\n  \"puntaje\": 4.5,\n  \"imagen\": \"https://ejemplo.com/imagen.png\",\n  \"fecha\": \"2023-02-21\"\n}\n",
+							"raw": "{\n  \"titulo\": \"Conferencia de Desarrollo Web\",\n  \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n  \"lugar\": \"Centro de Convenciones de la Ciudad\",\n  \"fecha\": \"2023-05-15\",\n  \"imagen\": \"https://ejemplo.com/imagen.png\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -63,12 +63,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/reviews/",
+							"raw": "{{baseUrl}}/events/",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"reviews",
+								"events",
 								""
 							]
 						}
@@ -86,18 +86,18 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 1234,\n    \"titulo\": \"Mi opinión sobre el producto\",\n    \"descripcion\": \"He estado usando este producto durante varias semanas y estoy muy satisfecho con su rendimiento. Lo recomiendo encarecidamente a cualquiera que busque un producto similar.\",\n    \"puntaje\": 4.5,\n    \"imagen\": \"https://ejemplo.com/imagen.png\",\n    \"fecha\": \"2023-02-21\"\n}"
+					"body": "{\n    \"id\": 1234,\n    \"titulo\": \"Conferencia de Desarrollo Web\",\n    \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n    \"lugar\": \"Centro de Convenciones de la Ciudad\",\n    \"fecha\": \"2023-05-15\",\n    \"imagen\": \"https://ejemplo.com/imagen.png\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Obtener todas las reviews",
+			"name": "Obtener todos los eventos",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('Number of reviews > ' + 0, function () {",
+							"pm.test('Number of events > ' + 0, function () {",
 							"   var data = pm.response.json()",
 							"   pm.expect(data.length).to.greaterThan(0)",
 							"});",
@@ -114,28 +114,28 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/reviews",
+					"raw": "{{baseUrl}}/eventos",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"reviews"
+						"eventos"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Obtener todas las reviews",
+					"name": "Obtener todos los eventos",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/reviews",
+							"raw": "{{baseUrl}}/events",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"reviews"
+								"events"
 							]
 						}
 					},
@@ -152,12 +152,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 1234,\n        \"titulo\": \"Mi opinión sobre el producto\",\n        \"descripcion\": \"He estado usando este producto durante varias semanas y estoy muy satisfecho con su rendimiento. Lo recomiendo encarecidamente a cualquiera que busque un producto similar.\",\n        \"puntaje\": 4.5,\n        \"imagen\": \"https://ejemplo.com/imagen.png\",\n        \"fecha\": \"2023-02-21\"\n    },\n    {\n        \"id\": 5678,\n        \"titulo\": \"Otra opinión sobre el producto\",\n        \"descripcion\": \"Este producto no cumplió con mis expectativas. No lo recomendaría a nadie.\",\n        \"puntaje\": 2,\n        \"imagen\": \"\",\n        \"fecha\": \"2023-02-18\"\n    }\n]"
+					"body": "[\n    {\n        \"id\": 1234,\n        \"titulo\": \"Conferencia de Desarrollo Web\",\n        \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n        \"lugar\": \"Centro de Convenciones de la Ciudad\",\n        \"fecha\": \"2023-05-15\",\n        \"imagen\": \"https://ejemplo.com/imagen.png\"\n    },\n    {\n        \"id\": 5678,\n        \"titulo\": \"Taller de Marketing Digital\",\n        \"objetivo\": \"Aprender a utilizar herramientas digitales para promocionar productos y servicios en línea\",\n        \"lugar\": \"Salón de eventos de la Universidad\",\n        \"fecha\": \"2023-06-20\",\n        \"imagen\": \"https://ejemplo.com/imagen2.png\"\n    }\n]"
 				}
 			]
 		},
 		{
-			"name": "Obtener una review",
+			"name": "Obtener un evento",
 			"event": [
 				{
 					"listen": "test",
@@ -175,30 +175,30 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/reviews/{{review_id}}",
+					"raw": "{{baseUrl}}/eventos/{{event_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"reviews",
-						"{{review_id}}"
+						"eventos",
+						"{{event_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Obtener una review",
+					"name": "Obtener un evento",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/reviews/{{review_id}}",
+							"raw": "{{baseUrl}}/events/{{event_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"reviews",
-								"{{review_id}}"
+								"events",
+								"{{event_id}}"
 							]
 						}
 					},
@@ -215,12 +215,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 1234,\n    \"titulo\": \"Mi opinión sobre el producto\",\n    \"descripcion\": \"He estado usando este producto durante varias semanas y estoy muy satisfecho con su rendimiento. Lo recomiendo encarecidamente a cualquiera que busque un producto similar.\",\n    \"puntaje\": 4.5,\n    \"imagen\": \"https://ejemplo.com/imagen.png\",\n    \"fecha\": \"2023-02-21\"\n}"
+					"body": "{\n    \"id\": 1234,\n    \"titulo\": \"Conferencia de Desarrollo Web\",\n    \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n    \"lugar\": \"Centro de Convenciones de la Ciudad\",\n    \"fecha\": \"2023-05-15\",\n    \"imagen\": \"https://ejemplo.com/imagen.png\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Obtener una review que no existe",
+			"name": "Obtener un evento que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -232,7 +232,7 @@
 							"",
 							"pm.test(\"Get expected error message\", function () {",
 							"   var data = pm.response.json();",
-							"   pm.expect(data.message).to.eql(\"The review with the given id was not found\");",
+							"   pm.expect(data.message).to.eql(\"The event with the given id was not found\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -243,29 +243,29 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/reviews/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/eventos/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"reviews",
+						"eventos",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Obtener una review que no existe",
+					"name": "Obtener un evento que no existe",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/reviews/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/events/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"reviews",
+								"events",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -283,12 +283,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The review with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The event with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Actualizar una review",
+			"name": "Actualizar un evento",
 			"event": [
 				{
 					"listen": "test",
@@ -307,7 +307,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Otra opinión sobre el producto\",\r\n    \"descripcion\": \"Este producto no cumplió con mis expectativas. No lo recomendaría a nadie.\",\r\n    \"puntaje\": 2,\r\n    \"imagen\": \"https://via.placeholder.com/300\",\r\n    \"fecha\": \"2023-02-18\"\r\n}",
+					"raw": "{\r\n    \"titulo\": \"Taller de Marketing Digital\",\r\n    \"objetivo\": \"Aprender a utilizar herramientas digitales para promocionar productos y servicios en línea\",\r\n    \"lugar\": \"Salón de eventos de la Universidad\",\r\n    \"fecha\": \"2023-06-20\",\r\n    \"imagen\": \"https://ejemplo.com/imagen2.png\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -315,25 +315,25 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/reviews/{{review_id}}",
+					"raw": "{{baseUrl}}/eventos/{{event_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"reviews",
-						"{{review_id}}"
+						"eventos",
+						"{{event_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Actualizar una review",
+					"name": "Actualizar un evento",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Otra opinión sobre el producto\",\r\n    \"descripcion\": \"Este producto no cumplió con mis expectativas. No lo recomendaría a nadie.\",\r\n    \"puntaje\": 2,\r\n    \"imagen\": \"\",\r\n    \"fecha\": \"2023-02-18\"\r\n}",
+							"raw": "{\r\n    \"titulo\": \"Taller de Marketing Digital\",\r\n    \"objetivo\": \"Aprender a utilizar herramientas digitales para promocionar productos y servicios en línea\",\r\n    \"lugar\": \"Salón de eventos de la Universidad\",\r\n    \"fecha\": \"2023-06-20\",\r\n    \"imagen\": \"https://ejemplo.com/imagen2.png\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -341,13 +341,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/reviews/{{review_id}}",
+							"raw": "{{baseUrl}}/events/{{event_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"reviews",
-								"{{review_id}}"
+								"events",
+								"{{event_id}}"
 							]
 						}
 					},
@@ -364,12 +364,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 5678,\n    \"titulo\": \"Otra opinión sobre el producto\",\n    \"descripcion\": \"Este producto no cumplió con mis expectativas. No lo recomendaría a nadie.\",\n    \"puntaje\": 2,\n    \"imagen\": \"\",\n    \"fecha\": \"2023-02-18\"\n}"
+					"body": "{\n    \"id\": 5678,\n    \"titulo\": \"Taller de Marketing Digital\",\n    \"objetivo\": \"Aprender a utilizar herramientas digitales para promocionar productos y servicios en línea\",\n    \"lugar\": \"Salón de eventos de la Universidad\",\n    \"fecha\": \"2023-06-20\",\n    \"imagen\": \"https://ejemplo.com/imagen2.png\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Actualizar una review que no existe",
+			"name": "Actualizar un evento que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -381,7 +381,7 @@
 							"",
 							"pm.test(\"Get expected error message\", function () {",
 							"   var data = pm.response.json();",
-							"   pm.expect(data.message).to.eql(\"The review with the given id was not found\");",
+							"   pm.expect(data.message).to.eql(\"The event with the given id was not found\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -393,7 +393,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Otra opinión sobre el producto\",\r\n    \"descripcion\": \"Este producto no cumplió con mis expectativas. No lo recomendaría a nadie.\",\r\n    \"puntaje\": 2,\r\n    \"imagen\": \"https://via.placeholder.com/300\",\r\n    \"fecha\": \"2023-02-18\"\r\n}",
+					"raw": "{\r\n    \"titulo\": \"Taller de Marketing Digital\",\r\n    \"objetivo\": \"Aprender a utilizar herramientas digitales para promocionar productos y servicios en línea\",\r\n    \"lugar\": \"Salón de eventos de la Universidad\",\r\n    \"fecha\": \"2023-06-20\",\r\n    \"imagen\": \"https://ejemplo.com/imagen2.png\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -401,19 +401,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/reviews/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/eventos/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"reviews",
+						"eventos",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Actualizar una review que no existe",
+					"name": "Actualizar un evento que no existe",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
@@ -427,12 +427,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/reviews/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/events/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"reviews",
+								"events",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -450,12 +450,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The review with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The event with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Borrar una review",
+			"name": "Borrar un evento",
 			"event": [
 				{
 					"listen": "test",
@@ -473,30 +473,30 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/reviews/{{review_id}}",
+					"raw": "{{baseUrl}}/eventos/{{event_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"reviews",
-						"{{review_id}}"
+						"eventos",
+						"{{event_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Borrar una review",
+					"name": "Borrar un evento",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/reviews/{{review_id}}",
+							"raw": "{{baseUrl}}/reviews/{{event_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"reviews",
-								"{{review_id}}"
+								"{{event_id}}"
 							]
 						}
 					},
@@ -510,7 +510,7 @@
 			]
 		},
 		{
-			"name": "Borrar una review que no existe",
+			"name": "Borrar un evento que no existe",
 			"event": [
 				{
 					"listen": "test",
@@ -522,7 +522,7 @@
 							"",
 							"pm.test(\"Get expected error message\", function () {",
 							"   var data = pm.response.json();",
-							"   pm.expect(data.message).to.eql(\"The review with the given id was not found\");",
+							"   pm.expect(data.message).to.eql(\"The event with the given id was not found\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -533,29 +533,29 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/reviews/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/eventos/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"reviews",
+						"eventos",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Borrar una review que no existe",
+					"name": "Borrar un evento que no existe",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/reviews/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/events/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"reviews",
+								"events",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -573,7 +573,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The review with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The event with the given id was not found\"\n}"
 				}
 			]
 		}
@@ -605,8 +605,8 @@
 			"type": "string"
 		},
 		{
-			"key": "review_id",
-			"value": "a8349278-e7cc-47ee-a4b0-a702fb1640d7",
+			"key": "event_id",
+			"value": "cbc3dbfb-8489-4e23-8241-fdb096deee89",
 			"type": "string"
 		}
 	]
