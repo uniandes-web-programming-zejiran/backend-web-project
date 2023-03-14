@@ -61,7 +61,7 @@ describe('ReviewUsuarioService', () => {
     expect(service).toBeDefined();
   });
 
-  it('addUsuarioReview should add review to product', async () => {
+  it('addUsuarioReview should add review to usuario', async () => {
     const newUsuario: UsuarioEntity = await usuarioRepository.save({
       cedula: faker.random.numeric(10).toString(),
       nombre: faker.name.firstName(),
@@ -91,7 +91,7 @@ describe('ReviewUsuarioService', () => {
     expect(result.reviews[0].fecha).toBe(newReview.fecha);
   });
 
-  it('addUsuarioReview should thrown exception for an invalid product', async () => {
+  it('addUsuarioReview should thrown exception for an invalid usuario', async () => {
     const newReview: ReviewEntity = await reviewRepository.save({
       titulo: faker.lorem.sentence(),
       descripcion: faker.lorem.paragraph(),
@@ -125,7 +125,7 @@ describe('ReviewUsuarioService', () => {
     );
   });
 
-  it('findReviewByUsuarioIdReviewId should return review by product', async () => {
+  it('findReviewByUsuarioIdReviewId should return review by usuario', async () => {
     const review: ReviewEntity = reviewsList[0];
     const storedReview: ReviewEntity =
       await service.findReviewByUsuarioIdReviewId(review.id, usuario.id);
@@ -137,7 +137,7 @@ describe('ReviewUsuarioService', () => {
     expect(storedReview.fecha).toBe(review.fecha);
   });
 
-  it('findReviewByUsuarioIdReviewId should throw an exception for an invalid product', async () => {
+  it('findReviewByUsuarioIdReviewId should throw an exception for an invalid usuario', async () => {
     const review: ReviewEntity = reviewsList[0];
     await expect(() =>
       service.findReviewByUsuarioIdReviewId(review.id, '0'),
@@ -156,7 +156,7 @@ describe('ReviewUsuarioService', () => {
     );
   });
 
-  it('findReviewByUsuarioIdReviewId should throw an exception for a review not associated to the product', async () => {
+  it('findReviewByUsuarioIdReviewId should throw an exception for a review not associated to the usuario', async () => {
     const newReview: ReviewEntity = await reviewRepository.save({
       titulo: faker.lorem.sentence(),
       descripcion: faker.lorem.paragraph(),
@@ -173,23 +173,23 @@ describe('ReviewUsuarioService', () => {
     );
   });
 
-  it('findReviewsByProductId should return usuarios by product', async () => {
-    const reviews: ReviewEntity[] = await service.findReviewsByProductId(
+  it('findReviewsByUsuarioId should return usuarios by usuario', async () => {
+    const reviews: ReviewEntity[] = await service.findReviewsByUsuarioId(
       usuario.id,
     );
     expect(reviews.length).toBe(5);
   });
 
-  it('findReviewsByProductId should throw an exception for an invalid product', async () => {
+  it('findReviewsByUsuarioId should throw an exception for an invalid usuario', async () => {
     await expect(() =>
-      service.findReviewsByProductId('0'),
+      service.findReviewsByUsuarioId('0'),
     ).rejects.toHaveProperty(
       'message',
       'El usuario con el id dado no fue encontrado',
     );
   });
 
-  it('associateReviewsUsuario should update reviews list for a product', async () => {
+  it('associateReviewsUsuario should update reviews list for a usuario', async () => {
     const newReview: ReviewEntity = await reviewRepository.save({
       titulo: faker.lorem.sentence(),
       descripcion: faker.lorem.paragraph(),
@@ -198,20 +198,20 @@ describe('ReviewUsuarioService', () => {
       fecha: faker.date.past().toISOString(),
     });
 
-    const updatedProduct: UsuarioEntity = await service.associateReviewsUsuario(
+    const updatedUsuario: UsuarioEntity = await service.associateReviewsUsuario(
       usuario.id,
       [newReview],
     );
-    expect(updatedProduct.reviews.length).toBe(1);
+    expect(updatedUsuario.reviews.length).toBe(1);
 
-    expect(updatedProduct.reviews[0].titulo).toBe(newReview.titulo);
-    expect(updatedProduct.reviews[0].descripcion).toBe(newReview.descripcion);
-    expect(updatedProduct.reviews[0].puntaje).toBe(newReview.puntaje);
-    expect(updatedProduct.reviews[0].imagen).toBe(newReview.imagen);
-    expect(updatedProduct.reviews[0].fecha).toBe(newReview.fecha);
+    expect(updatedUsuario.reviews[0].titulo).toBe(newReview.titulo);
+    expect(updatedUsuario.reviews[0].descripcion).toBe(newReview.descripcion);
+    expect(updatedUsuario.reviews[0].puntaje).toBe(newReview.puntaje);
+    expect(updatedUsuario.reviews[0].imagen).toBe(newReview.imagen);
+    expect(updatedUsuario.reviews[0].fecha).toBe(newReview.fecha);
   });
 
-  it('associateReviewsUsuario should throw an exception for an invalid product', async () => {
+  it('associateReviewsUsuario should throw an exception for an invalid usuario', async () => {
     const newReview: ReviewEntity = await reviewRepository.save({
       titulo: faker.lorem.sentence(),
       descripcion: faker.lorem.paragraph(),
@@ -240,7 +240,7 @@ describe('ReviewUsuarioService', () => {
     );
   });
 
-  it('deleteUsuarioToReview should remove a review from a product', async () => {
+  it('deleteUsuarioToReview should remove a review from a usuario', async () => {
     const review: ReviewEntity = reviewsList[0];
 
     await service.deleteReviewUsuario(review.id, usuario.id);
@@ -265,7 +265,7 @@ describe('ReviewUsuarioService', () => {
     );
   });
 
-  it('deleteUsuarioToReview should thrown an exception for an invalid product', async () => {
+  it('deleteUsuarioToReview should thrown an exception for an invalid usuario', async () => {
     const review: ReviewEntity = reviewsList[0];
     await expect(() =>
       service.deleteReviewUsuario(review.id, '0'),
