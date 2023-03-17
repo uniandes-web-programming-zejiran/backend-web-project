@@ -31,7 +31,7 @@ describe('ProductoService', () => {
     productosList = [];
     for (let i = 0; i < 5; i++) {
       const producto: ProductoEntity = await repository.save({
-        nombre: faker.company.companyName(),
+        nombre: faker.company.name(),
         precio: faker.datatype.number(),
         stock: faker.datatype.number(),
         categoria: faker.lorem.sentence(),
@@ -72,7 +72,7 @@ describe('ProductoService', () => {
   it('create deberia retornar un producto', async () => {
     const producto: ProductoEntity = {
       id: '',
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       precio: faker.datatype.number(),
       stock: faker.datatype.number(),
       categoria: faker.lorem.sentence(),

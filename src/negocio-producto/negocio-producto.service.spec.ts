@@ -38,7 +38,7 @@ describe('NegocioProductoService', () => {
     productosList = [];
     for (let i = 0; i < 5; i++) {
       const producto: ProductoEntity = await productoRepository.save({
-        nombre: faker.company.companyName(),
+        nombre: faker.company.name(),
         precio: faker.datatype.number(),
         stock: faker.datatype.number(),
         categoria: faker.lorem.sentence(),
@@ -48,7 +48,7 @@ describe('NegocioProductoService', () => {
     }
 
     negocio = await negocioRepository.save({
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       tipo: faker.lorem.sentence(),
       ubicacion: faker.lorem.sentence(),
       fechaCreacion: faker.lorem.sentence(),
@@ -63,7 +63,7 @@ describe('NegocioProductoService', () => {
 
   it('addProductoNegocio should add an producto to a negocio', async () => {
     const newProducto: ProductoEntity = await productoRepository.save({
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       precio: faker.datatype.number(),
       stock: faker.datatype.number(),
       categoria: faker.lorem.sentence(),
@@ -71,7 +71,7 @@ describe('NegocioProductoService', () => {
     });
 
     const newNegocio: NegocioEntity = await negocioRepository.save({
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       tipo: faker.lorem.sentence(),
       ubicacion: faker.lorem.sentence(),
       fechaCreacion: faker.lorem.sentence(),
@@ -94,7 +94,7 @@ describe('NegocioProductoService', () => {
 
   it('addProductoNegocio should thrown exception for an invalid producto', async () => {
     const newNegocio: NegocioEntity = await negocioRepository.save({
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       tipo: faker.lorem.sentence(),
       ubicacion: faker.lorem.sentence(),
       fechaCreacion: faker.lorem.sentence(),
@@ -111,7 +111,7 @@ describe('NegocioProductoService', () => {
 
   it('addProductoNegocio should throw an exception for an invalid negocio', async () => {
     const newProducto: ProductoEntity = await productoRepository.save({
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       precio: faker.datatype.number(),
       stock: faker.datatype.number(),
       categoria: faker.lorem.sentence(),
@@ -159,7 +159,7 @@ describe('NegocioProductoService', () => {
 
   it('findProductoByNegocioIdProductoId should throw an exception for an producto not associated to the negocio', async () => {
     const newProducto: ProductoEntity = await productoRepository.save({
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       precio: faker.datatype.number(),
       stock: faker.datatype.number(),
       categoria: faker.lorem.sentence(),
@@ -192,7 +192,7 @@ describe('NegocioProductoService', () => {
 
   it('associateProductosNegocio should update productos list for a negocio', async () => {
     const newProducto: ProductoEntity = await productoRepository.save({
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       precio: faker.datatype.number(),
       stock: faker.datatype.number(),
       categoria: faker.lorem.sentence(),
@@ -212,7 +212,7 @@ describe('NegocioProductoService', () => {
 
   it('associateProductosNegocio should throw an exception for an invalid negocio', async () => {
     const newProducto: ProductoEntity = await productoRepository.save({
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       precio: faker.datatype.number(),
       stock: faker.datatype.number(),
       categoria: faker.lorem.sentence(),
@@ -276,7 +276,7 @@ describe('NegocioProductoService', () => {
 
   it('deleteProductoToNegocio should thrown an exception for an non asocciated producto', async () => {
     const newProducto: ProductoEntity = await productoRepository.save({
-      nombre: faker.company.companyName(),
+      nombre: faker.company.name(),
       precio: faker.datatype.number(),
       stock: faker.datatype.number(),
       categoria: faker.lorem.sentence(),

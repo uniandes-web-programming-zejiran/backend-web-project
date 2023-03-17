@@ -1,0 +1,644 @@
+{
+	"info": {
+		"_postman_id": "0144128e-e473-43b3-ae60-769e061e9773",
+		"name": "Negocio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25914771"
+	},
+	"item": [
+		{
+			"name": "Agregar negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"negocio_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"FrutiEcologica\",\r\n   \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n   \"tipo\": \"Alimentos\",\r\n   \"ubicacion\": \"Calle 36 #28-16\",\r\n   \"fechaCreacion\": \"20 de Agosto del 2022\",\r\n   \"imagen\": \"www.negocios.com/negocio.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/negocios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios"
+					]
+				},
+				"description": "Esta peticion agrega un negocio."
+			},
+			"response": [
+				{
+					"name": "Agregar negocio",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d\",\r\n   \"nombre\": \"FrutiEcologica\",\r\n   \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n   \"tipo\": \"Alimentos\",\r\n   \"ubicacion\": \"Calle 36 #28-16\",\r\n   \"fechaCreacion\": \"20 de Agosto del 2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los negocios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of museums > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/negocios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios"
+					]
+				},
+				"description": "Esta peticion obtiene los negocios."
+			},
+			"response": [
+				{
+					"name": "Obtener todos los negocios",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": \"48a9ab90-1276-11ed-861d\",\r\n        \"nombre\": \"FrutiEcologica\",\r\n        \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n        \"tipo\": \"Alimentos\",\r\n        \"ubicacion\": \"Calle 36 #28-16\",\r\n        \"fechaCreacion\": \"20 de Agosto del 2022\",\r\n        \"imagen\": \"www.negocios.com/negocio.png\",\r\n        \"productos\": [\r\n            {\r\n                \"id\": \"37461718\",\r\n                \"nombre\": \"Huevos ecologicos\",\r\n                \"precio\": 20,\r\n                \"stock\": 70,\r\n                \"categoria\": \"Alimentos\",\r\n                \"imagen\": \"www.imagenHuevos.com/huevos.png\"\r\n            }\r\n        ],\r\n        \"eventos\": [\r\n            {\r\n                \"id\": \"974718\",\r\n                \"titulo\": \"Evento 1\",\r\n                \"objetivo\": \"Reunir a los clientes\",\r\n                \"lugar\": \"Calle 114 #19-23\",\r\n                \"fecha\": \"22 de Noviembre del 2023\",\r\n                \"imagen\": \"www.evento.com/evento.png\"\r\n            }\r\n        ]\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Obtener un negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}"
+					]
+				},
+				"description": "Esta peticion obtiene un negocio."
+			},
+			"response": [
+				{
+					"name": "Obtener un negocio",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": \"48a9ab90-1276-11ed-861d\",\r\n        \"nombre\": \"FrutiEcologica\",\r\n        \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n        \"tipo\": \"Alimentos\",\r\n        \"ubicacion\": \"Calle 36 #28-16\",\r\n        \"fechaCreacion\": \"20 de Agosto del 2022\",\r\n        \"imagen\": \"www.negocios.com/negocio.png\",\r\n        \"productos\": [\r\n            {\r\n                \"id\": \"37461718\",\r\n                \"nombre\": \"Huevos ecologicos\",\r\n                \"precio\": 20,\r\n                \"stock\": 70,\r\n                \"categoria\": \"Alimentos\",\r\n                \"imagen\": \"www.imagenHuevos.com/huevos.png\"\r\n            }\r\n        ],\r\n        \"eventos\": [\r\n            {\r\n                \"id\": \"974718\",\r\n                \"titulo\": \"Evento 1\",\r\n                \"objetivo\": \"Reunir a los clientes\",\r\n                \"lugar\": \"Calle 114 #19-23\",\r\n                \"fecha\": \"22 de Noviembre del 2023\",\r\n                \"imagen\": \"www.evento.com/evento.png\"\r\n            }\r\n        ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Obtener un negocio que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El negocio con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta peticion obtiene un negocio que no existe"
+			},
+			"response": [
+				{
+					"name": "Obtener un negocio que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El negocio con el id dado no fue encontrado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Actualizar un negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"FrutiEcologica 2.0\",\r\n   \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n   \"tipo\": \"Alimentos\",\r\n   \"ubicacion\": \"Calle 36 #28-16\",\r\n   \"fechaCreacion\": \"20 de Agosto del 2022\",\r\n   \"imagen\": \"NuevaImagen.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un negocio",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d\",\r\n   \"nombre\": \"FrutiEcologica 2.0\",\r\n   \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n   \"tipo\": \"Alimentos\",\r\n   \"ubicacion\": \"Calle 36 #28-16\",\r\n   \"fechaCreacion\": \"20 de Agosto del 2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Actualizar un negocio que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El negocio con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"FrutiEcologica 2.0\",\r\n   \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n   \"tipo\": \"Alimentos\",\r\n   \"ubicacion\": \"Calle 36 #28-16\",\r\n   \"fechaCreacion\": \"20 de Agosto del 2022\",\r\n   \"imagen\": \"NuevaImagen.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un negocio que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El negocio con el id dado no existe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un negocio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/{{negocio_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"{{negocio_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un negocio",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/negocios/{{negocio_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"{{negocio_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un negocio que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El negocio con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"negocios",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un negocio que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El negocio con el id dado no existe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/negocios/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"negocios",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}

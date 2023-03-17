@@ -1,0 +1,613 @@
+{
+	"info": {
+		"_postman_id": "09fbee18-3090-4c1f-a2f5-50a7c6c52435",
+		"name": "Evento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11708390"
+	},
+	"item": [
+		{
+			"name": "Agregar un evento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"event_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"titulo\": \"Conferencia de Desarrollo Web\",\n  \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n  \"lugar\": \"Centro de Convenciones de la Ciudad\",\n  \"fecha\": \"2023-05-15\",\n  \"imagen\": \"https://ejemplo.com/imagen.png\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/eventos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventos",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar un evento",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Conferencia de Desarrollo Web\",\n  \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n  \"lugar\": \"Centro de Convenciones de la Ciudad\",\n  \"fecha\": \"2023-05-15\",\n  \"imagen\": \"https://ejemplo.com/imagen.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1234,\n    \"titulo\": \"Conferencia de Desarrollo Web\",\n    \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n    \"lugar\": \"Centro de Convenciones de la Ciudad\",\n    \"fecha\": \"2023-05-15\",\n    \"imagen\": \"https://ejemplo.com/imagen.png\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los eventos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of events > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todos los eventos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1234,\n        \"titulo\": \"Conferencia de Desarrollo Web\",\n        \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n        \"lugar\": \"Centro de Convenciones de la Ciudad\",\n        \"fecha\": \"2023-05-15\",\n        \"imagen\": \"https://ejemplo.com/imagen.png\"\n    },\n    {\n        \"id\": 5678,\n        \"titulo\": \"Taller de Marketing Digital\",\n        \"objetivo\": \"Aprender a utilizar herramientas digitales para promocionar productos y servicios en línea\",\n        \"lugar\": \"Salón de eventos de la Universidad\",\n        \"fecha\": \"2023-06-20\",\n        \"imagen\": \"https://ejemplo.com/imagen2.png\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un evento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventos/{{event_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventos",
+						"{{event_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un evento",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/events/{{event_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"{{event_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1234,\n    \"titulo\": \"Conferencia de Desarrollo Web\",\n    \"objetivo\": \"Aprender las últimas tendencias en el desarrollo web y la tecnología de programación\",\n    \"lugar\": \"Centro de Convenciones de la Ciudad\",\n    \"fecha\": \"2023-05-15\",\n    \"imagen\": \"https://ejemplo.com/imagen.png\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un evento que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The event with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un evento que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/events/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The event with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un evento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Taller de Marketing Digital\",\r\n    \"objetivo\": \"Aprender a utilizar herramientas digitales para promocionar productos y servicios en línea\",\r\n    \"lugar\": \"Salón de eventos de la Universidad\",\r\n    \"fecha\": \"2023-06-20\",\r\n    \"imagen\": \"https://ejemplo.com/imagen2.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/eventos/{{event_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventos",
+						"{{event_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un evento",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Taller de Marketing Digital\",\r\n    \"objetivo\": \"Aprender a utilizar herramientas digitales para promocionar productos y servicios en línea\",\r\n    \"lugar\": \"Salón de eventos de la Universidad\",\r\n    \"fecha\": \"2023-06-20\",\r\n    \"imagen\": \"https://ejemplo.com/imagen2.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events/{{event_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"{{event_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 5678,\n    \"titulo\": \"Taller de Marketing Digital\",\n    \"objetivo\": \"Aprender a utilizar herramientas digitales para promocionar productos y servicios en línea\",\n    \"lugar\": \"Salón de eventos de la Universidad\",\n    \"fecha\": \"2023-06-20\",\n    \"imagen\": \"https://ejemplo.com/imagen2.png\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un evento que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The event with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Taller de Marketing Digital\",\r\n    \"objetivo\": \"Aprender a utilizar herramientas digitales para promocionar productos y servicios en línea\",\r\n    \"lugar\": \"Salón de eventos de la Universidad\",\r\n    \"fecha\": \"2023-06-20\",\r\n    \"imagen\": \"https://ejemplo.com/imagen2.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/eventos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un evento que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Otra opinión sobre el producto\",\r\n    \"descripcion\": \"Este producto no cumplió con mis expectativas. No lo recomendaría a nadie.\",\r\n    \"puntaje\": 2,\r\n    \"imagen\": \"\",\r\n    \"fecha\": \"2023-02-18\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/events/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The event with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un evento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventos/{{event_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventos",
+						"{{event_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un evento",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/reviews/{{event_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reviews",
+								"{{event_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un evento que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The event with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un evento que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/events/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"events",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The event with the given id was not found\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "event_id",
+			"value": "cbc3dbfb-8489-4e23-8241-fdb096deee89",
+			"type": "string"
+		}
+	]
+}

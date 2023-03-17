@@ -80,7 +80,7 @@ export class ReviewUsuarioService {
     return reviewUsuario;
   }
 
-  async findReviewsByProductId(usuarioId: string): Promise<ReviewEntity[]> {
+  async findReviewsByUsuarioId(usuarioId: string): Promise<ReviewEntity[]> {
     const usuario: UsuarioEntity = await this.usuarioRepository.findOne({
       where: { id: usuarioId },
       relations: ['reviews'],
