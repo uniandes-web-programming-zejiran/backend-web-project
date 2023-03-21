@@ -92,7 +92,7 @@ describe('UsuarioPedidoService', () => {
       imagen: faker.image.avatar()
     })
 
-    await expect(() => service.addPedidoUsuario(newUsuario.cedula, "0")).rejects.toHaveProperty("message", "El pedido con el id dado no fue encontrado");
+    await expect(() => service.addPedidoUsuario(newUsuario.id, "0")).rejects.toHaveProperty("message", "El pedido con el id dado no fue encontrado");
   });
 
   //Prueba para el metodo addPedidoUsuario con un usuario invalido
@@ -103,7 +103,7 @@ describe('UsuarioPedidoService', () => {
         estado: faker.datatype.string(),
     })
 
-    await expect(() => service.addPedidoUsuario("0", newPedido.id)).rejects.toHaveProperty("message", "El usuario con la id dada no fue encontrado");
+    await expect(() => service.addPedidoUsuario("0", newPedido.id)).rejects.toHaveProperty("message", "El usuario con el id dado no fue encontrado");
   });
 
   //Prueba para el metodo findPedidoByUsuarioIdPedidoId
@@ -124,7 +124,7 @@ describe('UsuarioPedidoService', () => {
   //Prueba para el metodo findPedidoByUsuarioIdPedidoId con un usuario invalido
   it('findPedidoByUsuarioIdPedidoId deberia lanzar una excepcion si el usuario no existe', async () => {
     const pedido: PedidoEntity = pedidosList[0];
-    await expect(() => service.findPedidoByUsuarioIdPedidoId("0", pedido.id)).rejects.toHaveProperty("message", "El usuario con la id dada no fue encontrado");
+    await expect(() => service.findPedidoByUsuarioIdPedidoId("0", pedido.id)).rejects.toHaveProperty("message", "El usuario con el id dado no fue encontrado");
   });
 
   //Prueba para el metodo findAllPedidoesByUsuarioId con un pedido no asociado a un usuario
@@ -134,7 +134,7 @@ describe('UsuarioPedidoService', () => {
         monto: faker.datatype.number(),
         estado: faker.datatype.string(),
     });
-    await expect(() => service.findPedidoByUsuarioIdPedidoId(usuario.id, newPedido.id)).rejects.toHaveProperty("message", "El pedido con el id dado no está asociado al usuario");
+    await expect(() => service.findPedidoByUsuarioIdPedidoId(usuario.id, newPedido.id)).rejects.toHaveProperty("message", "El pedido con el id dado no esta asociado al usuario");
   });
 
   //Prueba para el metodo findPedidoesByUsuarioId
@@ -145,7 +145,7 @@ describe('UsuarioPedidoService', () => {
 
   //Prueba para el metodo findpUblicacionesByUsuarioId con un usuario invalido
   it('findPedidoesByUsuarioId deberia lanzar una excepcion si el usuario no existe', async () => {
-    await expect(() => service.findPedidoByUsuarioId("0")).rejects.toHaveProperty("message", "El usuario con la id dada no fue encontrado");
+    await expect(() => service.findPedidoByUsuarioId("0")).rejects.toHaveProperty("message", "El usuario con el id dado no fue encontrado");
   });
 
   //Prueba para el metodo assosiatePedidoUsuario con update 
@@ -172,7 +172,7 @@ describe('UsuarioPedidoService', () => {
         estado: faker.datatype.string(),
     });
 
-    await expect(() => service.associatePedidoUsuario("0", [newPedido])).rejects.toHaveProperty("message", "El usuario con la id dada no fue encontrado");
+    await expect(() => service.associatePedidoUsuario("0", [newPedido])).rejects.toHaveProperty("message", "El usuario con el id dado no fue encontrado");
   });
 
   //Prueba para el metodo assosiatePedidoUsuario con update con una pedido no valida
@@ -203,7 +203,7 @@ describe('UsuarioPedidoService', () => {
   //Prueba para el método deletePedidoUsuario con un usuario no valido
   it('deletePedidoUsuario deberia lanzar una excepcion si el usuario no existe', async () => {
     const pedido: PedidoEntity = pedidosList[0];
-    await expect(() => service.deletePedidoUsuario("0", pedido.id)).rejects.toHaveProperty("message", "El usuario con la id dada no fue encontrado");
+    await expect(() => service.deletePedidoUsuario("0", pedido.id)).rejects.toHaveProperty("message", "El usuario con el id dado no fue encontrado");
   });
 
   //Prueba para el método deletePedidoUsuario con un pedido no asociado a un usuario
@@ -213,6 +213,6 @@ describe('UsuarioPedidoService', () => {
         monto: faker.datatype.number(),
         estado: faker.datatype.string(),
     });
-    await expect(() => service.deletePedidoUsuario(usuario.id, newPedido.id)).rejects.toHaveProperty("message", "El pedido con el id dado no está asociado al usuario");
+    await expect(() => service.deletePedidoUsuario(usuario.id, newPedido.id)).rejects.toHaveProperty("message", "El pedido con el id dado no esta asociado al usuario");
   });
 });

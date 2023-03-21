@@ -29,7 +29,7 @@ export class PublicacionService {
       });
     if (!publicacion) {
       throw new BusinessLogicException(
-        'La publicacion con el id dado no fue encontrado',
+        'La publicacion con el id dado no fue encontrada',
         BusinessError.NOT_FOUND,
       );
     }
@@ -50,7 +50,7 @@ export class PublicacionService {
       await this.publicacionRepository.findOne({ where: { id } });
     if (!persistedPublicacion) {
       throw new BusinessLogicException(
-        'La publicacion con el id dado no fue encontrado',
+        'La publicacion con el id dado no fue encontrada',
         BusinessError.NOT_FOUND,
       );
     }
@@ -66,7 +66,7 @@ export class PublicacionService {
       await this.publicacionRepository.findOne({ where: { id } });
     if (!publicacion) {
       throw new BusinessLogicException(
-        'La publicacion con el id dado no fue encontrado',
+        'La publicacion con el id dado no fue encontrada',
         BusinessError.NOT_FOUND,
       );
     }

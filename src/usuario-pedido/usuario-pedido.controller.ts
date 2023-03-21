@@ -1,4 +1,4 @@
-/*
+
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { PedidoDto } from 'src/pedido/pedido.dto';
@@ -38,4 +38,3 @@ export class UsuarioPedidoController {
         return await this.usuarioPedidoService.deletePedidoUsuario(usuarioId, pedidoId);
     }
 }
-*/

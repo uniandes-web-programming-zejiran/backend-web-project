@@ -18,14 +18,14 @@ export class UsuarioPublicacionService {
 
     //Añaadir una publicacion a un usuario
     async addPublicacionUsuario(idUsuario: string, idPublicacion: string) {
-        const publicacion: PublicacionEntity = await this.publicacionRepository.findOne({where: {id: idPublicacion}});
+        const publicacion: PublicacionEntity = await this.publicacionRepository.findOne({where: {id: idPublicacion}, relations: ["usuario"]});
         if(!publicacion) {
             throw new BusinessLogicException("La publicacion con el id dado no fue encontrada", BusinessError.NOT_FOUND);
         }
 
-        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["publicaciones", "pedidos", "reviews"]});
+        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["publicaciones"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con el id dado no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         usuario.publicaciones = [...usuario.publicaciones, publicacion];
@@ -41,12 +41,12 @@ export class UsuarioPublicacionService {
 
         const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["publicaciones"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con el id dado no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         const usuarioPublicacion: PublicacionEntity = usuario.publicaciones.find(e => e.id === publicacion.id);
         if(!usuarioPublicacion) {
-            throw new BusinessLogicException("Publicacion con el id dado no está asociada al usuario", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("La publicacion con el id dado no esta asociada al usuario", BusinessError.PRECONDITION_FAILED);
         }
 
         return usuarioPublicacion;
@@ -56,7 +56,7 @@ export class UsuarioPublicacionService {
     async findPublicacionByUsuarioId(idUsuario: string) {
         const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["publicaciones"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con el id dado no fue encontrado", BusinessError.NOT_FOUND);
         }
         return usuario.publicaciones;
     }
@@ -65,7 +65,7 @@ export class UsuarioPublicacionService {
     async associatePublicacionUsuario(idUsuario: string, publicaciones: PublicacionEntity[]): Promise<UsuarioEntity> {
         const usaurio: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["publicaciones"]});
         if(!usaurio) {
-            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con el id dado no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         for (let i = 0; i < publicaciones.length; i++) {
@@ -88,12 +88,12 @@ export class UsuarioPublicacionService {
 
         const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["publicaciones"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con el id dado no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         const usuarioPublicacion: PublicacionEntity = usuario.publicaciones.find(e => e.id === publicacion.id);
         if(!usuarioPublicacion) {
-            throw new BusinessLogicException("Publicacion con el id dado no está asociada al usuario", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("La publicacion con el id dado no esta asociada al usuario", BusinessError.PRECONDITION_FAILED);
         }
 
         usuario.publicaciones = usuario.publicaciones.filter(e => e.id !== idPublicacion);
