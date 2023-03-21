@@ -65,7 +65,7 @@ describe('PublicacionService', () => {
 
     //Prueba metodo findOne con id inexistente
     it('findOne deberia retornar exception para una publicacion no valida', async () => {  
-        await expect(() => service.findOne("0")).rejects.toHaveProperty('message', 'La publicacion con el id dado no fue encontrado');
+        await expect(() => service.findOne("0")).rejects.toHaveProperty('message', 'La publicacion con el id dado no fue encontrada');
     });
 
     //Prueba para el metodo create
@@ -110,7 +110,7 @@ describe('PublicacionService', () => {
         publicacion = {
             ...publicacion, titulo: "Nuevo titulo", cuerpo: "Nuevo cuerpo"
         }
-        expect(() => service.update("0", publicacion)).rejects.toHaveProperty('message', 'La publicacion con el id dado no fue encontrado');
+        expect(() => service.update("0", publicacion)).rejects.toHaveProperty('message', 'La publicacion con el id dado no fue encontrada');
     });
 
     //Prueba para el metodo delete
@@ -124,7 +124,7 @@ describe('PublicacionService', () => {
     //Prueba para el metodo delete con id inexistente
     it('delete deberia retornar exception para una publicacion no valida', async () => {
         const publicacion: PublicacionEntity = publicacionesList[0];
-        await expect(() => service.delete("0")).rejects.toHaveProperty('message', 'La publicacion con el id dado no fue encontrado');
+        await expect(() => service.delete("0")).rejects.toHaveProperty('message', 'La publicacion con el id dado no fue encontrada');
     });
 
 });

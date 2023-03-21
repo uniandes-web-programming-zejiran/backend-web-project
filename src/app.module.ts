@@ -22,6 +22,8 @@ import { NegocioProductoModule } from './negocio-producto/negocio-producto.modul
 import { NegocioEventoModule } from './negocio-evento/negocio-evento.module';
 import { ReviewUsuarioModule } from './review-usuario/review-usuario.module';
 import { ReviewProductoModule } from './review-producto/review-producto.module';
+import { UsuarioPublicacionModule } from './usuario-publicacion/usuario-publicacion.module';
+import { UsuarioPedidoModule } from './usuario-pedido/usuario-pedido.module';
 
 @Module({
   imports: [
@@ -58,6 +60,8 @@ import { ReviewProductoModule } from './review-producto/review-producto.module';
     NegocioEventoModule,
     ReviewUsuarioModule,
     ReviewProductoModule,
+    UsuarioPublicacionModule,
+    UsuarioPedidoModule
   ],
   controllers: [AppController],
   providers: [AppService],

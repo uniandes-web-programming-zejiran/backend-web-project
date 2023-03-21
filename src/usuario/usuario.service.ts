@@ -30,7 +30,7 @@ export class UsuarioService {
     });
     if (!usuario) {
       throw new BusinessLogicException(
-        'El usuario con la id dada no fue encontrado',
+        'El usuario con el id dado no fue encontrado',
         BusinessError.NOT_FOUND,
       );
     }
@@ -48,7 +48,7 @@ export class UsuarioService {
       await this.usuarioRepository.findOne({ where: { id } });
     if (!persistedUsuario) {
       throw new BusinessLogicException(
-        'El usuario con la id dada no fue encontrado',
+        'El usuario con el id dado no fue encontrado',
         BusinessError.NOT_FOUND,
       );
     }
@@ -65,7 +65,7 @@ export class UsuarioService {
     });
     if (!usuario) {
       throw new BusinessLogicException(
-        'El usuario con la id dada no fue encontrado',
+        'El usuario con el id dado no fue encontrado',
         BusinessError.NOT_FOUND,
       );
     }

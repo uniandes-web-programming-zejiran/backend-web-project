@@ -18,15 +18,18 @@ export class UsuarioPedidoService {
 
     //Añadir un pedido a un usuario
     async addPedidoUsuario(idUsuario: string, idPedido: string) {
+        
+        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["pedidos"]});
+        if(!usuario) {
+            throw new BusinessLogicException("El usuario con el id dado no fue encontrado", BusinessError.NOT_FOUND);
+        }
+        
         const pedido: PedidoEntity = await this.pedidoRepository.findOne({where: {id: idPedido}});
         if(!pedido) {
             throw new BusinessLogicException("El pedido con el id dado no fue encontrado", BusinessError.NOT_FOUND);
         }
 
-        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["publicaciones", "pedidos", "reviews"]});
-        if(!usuario) {
-            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
-        }
+        
 
         usuario.pedidos = [...usuario.pedidos, pedido];
         return await this.usuarioRepository.save(usuario);
@@ -41,12 +44,12 @@ export class UsuarioPedidoService {
 
         const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["pedidos"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con el id dado no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         const usuarioPedido: PedidoEntity = usuario.pedidos.find(e => e.id === pedido.id);
         if(!usuarioPedido) {
-            throw new BusinessLogicException("El pedido con el id dado no está asociado al usuario", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El pedido con el id dado no esta asociado al usuario", BusinessError.PRECONDITION_FAILED);
         }
 
         return usuarioPedido;
@@ -56,7 +59,7 @@ export class UsuarioPedidoService {
     async findPedidoByUsuarioId(idUsuario: string) {
         const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["pedidos"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con el id dado no fue encontrado", BusinessError.NOT_FOUND);
         }
         return usuario.pedidos;
     }
@@ -65,7 +68,7 @@ export class UsuarioPedidoService {
     async associatePedidoUsuario(idUsuario: string, pedidos: PedidoEntity[]): Promise<UsuarioEntity> {
         const usaurio: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["pedidos"]});
         if(!usaurio) {
-            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con el id dado no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         for (let i = 0; i < pedidos.length; i++) {
@@ -88,12 +91,12 @@ export class UsuarioPedidoService {
 
         const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: idUsuario}, relations: ["pedidos"]});
         if(!usuario) {
-            throw new BusinessLogicException("El usuario con la id dada no fue encontrado", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El usuario con el id dado no fue encontrado", BusinessError.NOT_FOUND);
         }
 
         const usuarioPedido: PedidoEntity = usuario.pedidos.find(e => e.id === pedido.id);
         if(!usuarioPedido) {
-            throw new BusinessLogicException("El pedido con el id dado no está asociado al usuario", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El pedido con el id dado no esta asociado al usuario", BusinessError.PRECONDITION_FAILED);
         }
 
         usuario.pedidos = usuario.pedidos.filter(e => e.id !== idPedido);
