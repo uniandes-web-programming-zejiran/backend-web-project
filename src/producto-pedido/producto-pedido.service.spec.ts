@@ -38,16 +38,16 @@ describe('ProductoPedidoService', () => {
     productosList = [];
     for (let i = 0; i < 5; i++) {
       const producto: ProductoEntity = await productoRepository.save({
-      nombre: faker.name.firstName(),
-      precio: faker.datatype.number(),
-      stock: faker.datatype.number(),
-      categoria: faker.lorem.sentence(),
-      imagen: faker.image.imageUrl(),
+        nombre: faker.name.firstName(),
+        precio: faker.datatype.number(),
+        stock: faker.datatype.number(),
+        categoria: faker.lorem.sentence(),
+        imagen: faker.image.imageUrl(),
       });
       productosList.push(producto);
     }
 
-      pedido = await pedidoRepository.save({
+    pedido = await pedidoRepository.save({
       fecha: faker.date.past().toISOString(),
       monto: faker.datatype.number(),
       estado: faker.datatype.string(),

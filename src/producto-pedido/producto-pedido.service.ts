@@ -153,7 +153,7 @@ export class ProductoPedidoService {
         'El producto con el id dado no está asociado al pedido',
         BusinessError.PRECONDITION_FAILED,
       );
-      pedido.productos = pedido.productos.filter((e) => e.id !== productoId);
+    pedido.productos = pedido.productos.filter((e) => e.id !== productoId);
     await this.pedidoRepository.save(pedido);
   }
 }

@@ -1,5 +1,15 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Put,
+  UseInterceptors,
+} from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { EventoDto } from './evento.dto';
@@ -9,7 +19,7 @@ import { EventoService } from './evento.service';
 @Controller('eventos')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class EventoController {
-    constructor(private readonly eventoService: EventoService) {}
+  constructor(private readonly eventoService: EventoService) {}
 
   @Get()
   async findAll() {
@@ -28,7 +38,10 @@ export class EventoController {
   }
 
   @Put(':eventoId')
-  async update(@Param('eventoId') eventoId: string, @Body() eventoDto: EventoDto) {
+  async update(
+    @Param('eventoId') eventoId: string,
+    @Body() eventoDto: EventoDto,
+  ) {
     const evento: EventoEntity = plainToInstance(EventoEntity, eventoDto);
     return await this.eventoService.update(eventoId, evento);
   }

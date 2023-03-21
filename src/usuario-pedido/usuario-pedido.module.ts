@@ -8,6 +8,6 @@ import { PedidoEntity } from '../pedido/pedido.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([UsuarioEntity, PedidoEntity])],
   providers: [UsuarioPedidoService],
-  controllers: [UsuarioPedidoController]
+  controllers: [UsuarioPedidoController],
 })
 export class UsuarioPedidoModule {}

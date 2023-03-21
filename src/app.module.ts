@@ -61,7 +61,7 @@ import { UsuarioPedidoModule } from './usuario-pedido/usuario-pedido.module';
     ReviewUsuarioModule,
     ReviewProductoModule,
     UsuarioPublicacionModule,
-    UsuarioPedidoModule
+    UsuarioPedidoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

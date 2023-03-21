@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {  IsNotEmpty } from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 export class PagoDto {
   @IsNotEmpty()
   readonly monto: GLfloat;
@@ -7,4 +7,3 @@ export class PagoDto {
   @IsNotEmpty()
   readonly pagado: boolean;
 }
-

@@ -8,6 +8,6 @@ import { PublicacionEntity } from '../publicacion/publicacion.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([UsuarioEntity, PublicacionEntity])],
   providers: [UsuarioPublicacionService],
-  controllers: [UsuarioPublicacionController]
+  controllers: [UsuarioPublicacionController],
 })
 export class UsuarioPublicacionModule {}

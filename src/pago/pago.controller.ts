@@ -1,5 +1,15 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Put,
+  UseInterceptors,
+} from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { PagoDto } from './pago.dto';
@@ -9,7 +19,7 @@ import { PagoService } from './pago.service';
 @Controller('pagos')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class PagoController {
-    constructor(private readonly pagoService: PagoService) {}
+  constructor(private readonly pagoService: PagoService) {}
 
   @Get()
   async findAll() {
