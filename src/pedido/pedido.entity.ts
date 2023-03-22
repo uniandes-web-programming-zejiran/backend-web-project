@@ -5,12 +5,12 @@ import { UsuarioEntity } from '../usuario/usuario.entity';
 import {
   Column,
   Entity,
-  JoinColumn,
-  JoinTable,
   ManyToMany,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
+  JoinTable,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity()

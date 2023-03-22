@@ -24,6 +24,7 @@ import { ReviewUsuarioModule } from './review-usuario/review-usuario.module';
 import { ReviewProductoModule } from './review-producto/review-producto.module';
 import { UsuarioPublicacionModule } from './usuario-publicacion/usuario-publicacion.module';
 import { UsuarioPedidoModule } from './usuario-pedido/usuario-pedido.module';
+import { ProductoPedidoModule } from './producto-pedido/producto-pedido.module';
 
 @Module({
   imports: [
@@ -62,6 +63,7 @@ import { UsuarioPedidoModule } from './usuario-pedido/usuario-pedido.module';
     ReviewProductoModule,
     UsuarioPublicacionModule,
     UsuarioPedidoModule,
+    ProductoPedidoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

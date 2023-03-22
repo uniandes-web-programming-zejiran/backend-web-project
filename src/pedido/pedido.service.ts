@@ -46,9 +46,7 @@ export class PedidoService {
         'The pedido with the given id was not found',
         BusinessError.NOT_FOUND,
       );
-
     pedido.id = id;
-
     return await this.pedidoRepository.save({
       ...persistedPedido,
       ...pedido,

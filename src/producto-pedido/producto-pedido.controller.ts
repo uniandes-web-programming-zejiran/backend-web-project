@@ -21,7 +21,7 @@ import { ProductoPedidoService } from './producto-pedido.service';
 export class ProductoPedidoController {
   constructor(private readonly productoPedidoService: ProductoPedidoService) {}
 
-  @Post(':pedidoId/productos')
+  @Post(':pedidoId/productos/:productoId')
   async addReviewUsuario(
     @Param('pedidoId') pedidoId: string,
     @Param('productoId') productoId: string,
