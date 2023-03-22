@@ -21,7 +21,7 @@ import { ReviewProductoService } from './review-producto.service';
 export class ReviewProductoController {
   constructor(private readonly reviewProductoService: ReviewProductoService) {}
 
-  @Post(':productoId/reviews')
+  @Post(':productoId/reviews/:reviewId')
   async addReviewProducto(
     @Param('productoId') productoId: string,
     @Param('reviewId') reviewId: string,
