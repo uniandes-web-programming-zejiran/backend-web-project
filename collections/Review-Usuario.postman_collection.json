@@ -15,6 +15,7 @@
 						"exec": [
 							"var data = pm.response.json()\r",
 							"pm.globals.set(\"usuario_id\", data.id);\r",
+							"pm.collectionVariables.set(\"usuario_id\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -89,12 +90,16 @@
 			]
 		},
 		{
-			"name": "Agregar review a usuario",
+			"name": "Agregar review",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"review_id\", data.id);",
+							"pm.collectionVariables.set(\"review_id\", data.id);",
+							"",
 							"pm.test(\"Status code is 201\", function () {",
 							"   pm.response.to.have.status(201);",
 							"});"
@@ -116,14 +121,96 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/reviews",
+					"raw": "{{baseUrl}}/reviews/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"reviews",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar review",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Mi opinión sobre el producto\",\n  \"descripcion\": \"He estado usando este producto durante varias semanas y estoy muy satisfecho con su rendimiento. Lo recomiendo encarecidamente a cualquiera que busque un producto similar.\",\n  \"puntaje\": 4.5,\n  \"imagen\": \"https://ejemplo.com/imagen.png\",\n  \"fecha\": \"2023-02-21\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/reviews/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reviews",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1234,\n    \"titulo\": \"Mi opinión sobre el producto\",\n    \"descripcion\": \"He estado usando este producto durante varias semanas y estoy muy satisfecho con su rendimiento. Lo recomiendo encarecidamente a cualquiera que busque un producto similar.\",\n    \"puntaje\": 4.5,\n    \"imagen\": \"https://ejemplo.com/imagen.png\",\n    \"fecha\": \"2023-02-21\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar review a usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/reviews/{{review_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"reviews"
+						"reviews",
+						"{{review_id}}"
 					]
 				}
 			},
@@ -204,14 +291,15 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/reviews",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/reviews/{{review_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"reviews"
+						"reviews",
+						"{{review_id}}"
 					]
 				}
 			},
@@ -538,6 +626,137 @@
 			]
 		},
 		{
+			"name": "Borrar un review de un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/reviews/{{review_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}",
+						"reviews",
+						"{{review_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un review de un usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{id_usuario}}/reviews/{{id_review}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{id_usuario}}",
+								"reviews",
+								"{{id_review}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un review de un usuario que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"El usuario con el id dado no fue encontrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/reviews/{{review_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"00000000-0000-0000-0000-000000000000",
+						"reviews",
+						"{{review_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un review de un usuario que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/reviews/{{id_review}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"00000000-0000-0000-0000-000000000000",
+								"reviews",
+								"{{id_review}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The user with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
 			"name": "Actualizar review de un usuario",
 			"event": [
 				{
@@ -682,137 +901,6 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/reviews/{{id_review}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"usuarios",
-								"00000000-0000-0000-0000-000000000000",
-								"reviews",
-								"{{id_review}}"
-							]
-						}
-					},
-					"status": "Not Found",
-					"code": 404,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The user with the given id was not found\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Borrar un review de un usuario",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 204\", function () {",
-							"   pm.response.to.have.status(204);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/reviews/{{review_id}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"usuarios",
-						"{{usuario_id}}",
-						"reviews",
-						"{{review_id}}"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Borrar un review de un usuario",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{id_usuario}}/reviews/{{id_review}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"usuarios",
-								"{{id_usuario}}",
-								"reviews",
-								"{{id_review}}"
-							]
-						}
-					},
-					"status": "No Content",
-					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
-					"cookie": [],
-					"body": null
-				}
-			]
-		},
-		{
-			"name": "Borrar un review de un usuario que no existe",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {",
-							"   pm.response.to.have.status(404);",
-							"});",
-							"",
-							"pm.test(\"Get expected error message\", function () {",
-							"   var data = pm.response.json();",
-							"   pm.expect(data.message).to.eql(\"El usuario con el id dado no fue encontrado\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/reviews/{{review_id}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"usuarios",
-						"00000000-0000-0000-0000-000000000000",
-						"reviews",
-						"{{review_id}}"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Borrar un review de un usuario que no existe",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
 						"url": {
 							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/reviews/{{id_review}}",
 							"host": [
