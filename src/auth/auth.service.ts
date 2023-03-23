@@ -7,25 +7,27 @@ import constants from '../shared/security/constants';
 
 @Injectable()
 export class AuthService {
-    constructor(
-        private usersService: UserService,
-        private jwtService: JwtService
-    ) { }
+  constructor(
+    private usersService: UserService,
+    private jwtService: JwtService,
+  ) {}
 
-    async validateUser(username: string, password: string): Promise<any> {
-        const user: User = await this.usersService.findOne(username);
-        if (user && user.password === password) {
-            const { password, ...result } = user;
-            return result;
-        }
-        return null;
+  async validateUser(username: string, password: string): Promise<any> {
+    const user: User = await this.usersService.findOne(username);
+    if (user && user.password === password) {
+      const { password, ...result } = user;
+      return result;
     }
+    return null;
+  }
 
-    async login(req: any) {
-        const payload = { username: req.user.username, sub: req.user.id };
-        return {
-            token: this.jwtService.sign(payload, { privateKey: constants.JWT_SECRET, expiresIn: constants.JWT_EXPIRES_IN }),
-        };
-    }
-
+  async login(req: any) {
+    const payload = { username: req.user.username, sub: req.user.id };
+    return {
+      token: this.jwtService.sign(payload, {
+        privateKey: constants.JWT_SECRET,
+        expiresIn: constants.JWT_EXPIRES_IN,
+      }),
+    };
+  }
 }

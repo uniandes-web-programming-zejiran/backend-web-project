@@ -43,7 +43,7 @@ describe('PedidoService', () => {
   };
 
   it('should be defined', () => {
-   expect(service).toBeDefined();
+    expect(service).toBeDefined();
   });
 
   //Prueba para el metodo findAll
@@ -96,12 +96,9 @@ describe('PedidoService', () => {
 
   it('update deberia actualizar un pedido', async () => {
     const pedido: PedidoEntity = pedidosList[0];
-    pedido.fecha = "Nueva Fecha"
+    pedido.fecha = 'Nueva Fecha';
 
-    const updatedPedido: PedidoEntity = await service.update(
-      pedido.id,
-      pedido,
-    );
+    const updatedPedido: PedidoEntity = await service.update(pedido.id, pedido);
     expect(updatedPedido).not.toBeNull();
 
     const storedPedido: PedidoEntity = await repository.findOne({
@@ -115,7 +112,7 @@ describe('PedidoService', () => {
     let pedido: PedidoEntity = pedidosList[0];
     pedido = {
       ...pedido,
-      fecha: "Nueva Fecha"
+      fecha: 'Nueva Fecha',
     };
     expect(() => service.update('0', pedido)).rejects.toHaveProperty(
       'message',
