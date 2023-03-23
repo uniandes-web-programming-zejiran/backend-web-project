@@ -1,10 +1,12 @@
+import { Role } from '../auth/role.enum';
+
 export class User {
   id: number;
   username: string;
   password: string;
-  roles: string[];
+  roles: Role[];
 
-  constructor(id: number, username: string, password: string, roles: string[]) {
+  constructor(id: number, username: string, password: string, roles: Role[]) {
     this.id = id;
     this.username = username;
     this.password = password;
