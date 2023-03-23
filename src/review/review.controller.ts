@@ -1,5 +1,15 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Put,
+  UseInterceptors,
+} from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { ReviewDto } from './review.dto';
@@ -9,7 +19,7 @@ import { ReviewService } from './review.service';
 @Controller('reviews')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class ReviewController {
-    constructor(private readonly reviewService: ReviewService) {}
+  constructor(private readonly reviewService: ReviewService) {}
 
   @Get()
   async findAll() {
@@ -28,7 +38,10 @@ export class ReviewController {
   }
 
   @Put(':reviewId')
-  async update(@Param('reviewId') reviewId: string, @Body() reviewDto: ReviewDto) {
+  async update(
+    @Param('reviewId') reviewId: string,
+    @Body() reviewDto: ReviewDto,
+  ) {
     const review: ReviewEntity = plainToInstance(ReviewEntity, reviewDto);
     return await this.reviewService.update(reviewId, review);
   }

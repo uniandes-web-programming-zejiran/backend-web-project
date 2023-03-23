@@ -70,7 +70,7 @@ describe('UsuarioService', () => {
   it('findOne deberia retornar exception para un usuario no valido', async () => {
     await expect(() => service.findOne('0')).rejects.toHaveProperty(
       'message',
-      'El usuario con la id dada no fue encontrado',
+      'El usuario con el id dado no fue encontrado',
     );
   });
 
@@ -129,7 +129,7 @@ describe('UsuarioService', () => {
     };
     expect(() => service.update('0', usuario)).rejects.toHaveProperty(
       'message',
-      'El usuario con la id dada no fue encontrado',
+      'El usuario con el id dado no fue encontrado',
     );
   });
 
@@ -148,7 +148,7 @@ describe('UsuarioService', () => {
     const usuario: UsuarioEntity = usuariosList[0];
     await expect(() => service.delete('0')).rejects.toHaveProperty(
       'message',
-      'El usuario con la id dada no fue encontrado',
+      'El usuario con el id dado no fue encontrado',
     );
   });
 });

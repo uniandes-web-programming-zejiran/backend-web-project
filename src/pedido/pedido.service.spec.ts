@@ -1,9 +1,11 @@
+/* eslint-disable prettier/prettier */
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 import { Repository } from 'typeorm';
 import { PedidoEntity } from './pedido.entity';
 import { PedidoService } from './pedido.service';
+
 import { faker } from '@faker-js/faker';
 import { UsuarioEntity } from '../usuario/usuario.entity';
 
@@ -26,23 +28,23 @@ describe('PedidoService', () => {
     await seedDatabase();
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
-
   //Metodo para poblar la base de datos
   const seedDatabase = async () => {
     repository.clear();
     pedidosList = [];
     for (let i = 0; i < 5; i++) {
       const pedido: PedidoEntity = await repository.save({
-        fecha: faker.date.past().toISOString(),
+        fecha: faker.datatype.string(),
         monto: faker.datatype.number(),
         estado: faker.datatype.string(),
       });
       pedidosList.push(pedido);
     }
   };
+
+  it('should be defined', () => {
+   expect(service).toBeDefined();
+  });
 
   //Prueba para el metodo findAll
   it('findAll deberia retornar el listado de pedidos', async () => {
@@ -73,12 +75,11 @@ describe('PedidoService', () => {
   it('create deberia crear un pedido', async () => {
     const pedido: PedidoEntity = {
       id: '',
-      fecha: faker.date.past().toISOString(),
+      fecha: faker.datatype.string(),
       monto: faker.datatype.number(),
       estado: faker.datatype.string(),
       productos: [],
       usuario: new UsuarioEntity(),
-      //Revisar la relacion con pago
       pago: null,
     };
     const newPedido: PedidoEntity = await service.create(pedido);
@@ -93,32 +94,28 @@ describe('PedidoService', () => {
     expect(storedPedido.estado).toEqual(storedPedido.estado);
   });
 
-  //Prueba para el metodo update
   it('update deberia actualizar un pedido', async () => {
     const pedido: PedidoEntity = pedidosList[0];
-    pedido.fecha = faker.date.past().toISOString();
-    pedido.monto = faker.datatype.number();
-    pedido.estado = faker.datatype.string();
+    pedido.fecha = "Nueva Fecha"
 
-    const updatedPedido: PedidoEntity = await service.update(pedido.id, pedido);
+    const updatedPedido: PedidoEntity = await service.update(
+      pedido.id,
+      pedido,
+    );
     expect(updatedPedido).not.toBeNull();
+
     const storedPedido: PedidoEntity = await repository.findOne({
       where: { id: pedido.id },
     });
     expect(storedPedido).not.toBeNull();
-    expect(storedPedido.fecha).toEqual(storedPedido.fecha);
-    expect(storedPedido.monto).toEqual(storedPedido.monto);
-    expect(storedPedido.estado).toEqual(storedPedido.estado);
+    expect(storedPedido.fecha).toEqual(pedido.fecha);
   });
 
-  //Prueba para el metodo update con pedido inexistente
-  it('update deberia retornar exception para un pedido no valido', async () => {
+  it('update deberia retornar exception si el pedido no es valido', async () => {
     let pedido: PedidoEntity = pedidosList[0];
     pedido = {
       ...pedido,
-      fecha: faker.date.past().toISOString(),
-      monto: faker.datatype.number(),
-      estado: faker.datatype.string(),
+      fecha: "Nueva Fecha"
     };
     expect(() => service.update('0', pedido)).rejects.toHaveProperty(
       'message',

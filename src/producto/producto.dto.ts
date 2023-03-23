@@ -1,6 +1,5 @@
-import {IsNotEmpty, IsString} from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 export class ProductoDto {
-
   @IsString()
   @IsNotEmpty()
   readonly nombre: string;
@@ -18,6 +17,4 @@ export class ProductoDto {
   @IsString()
   @IsNotEmpty()
   readonly imagen: string;
-
-
 }

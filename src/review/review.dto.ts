@@ -1,10 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  IsUrl,
-} from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, IsUrl } from 'class-validator';
 export class ReviewDto {
   @IsString()
   @IsNotEmpty()
