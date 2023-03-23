@@ -15,7 +15,7 @@ export class NegocioController {
     async findAll() {
         return await this.negocioService.findAll();
     }
-
+    
     @Get(':negocioId')
     async findOne(@Param('negocioId') negocioId: string) {
         return await this.negocioService.findOne(negocioId);
