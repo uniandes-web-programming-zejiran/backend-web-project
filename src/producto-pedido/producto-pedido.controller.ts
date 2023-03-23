@@ -22,7 +22,7 @@ export class ProductoPedidoController {
   constructor(private readonly productoPedidoService: ProductoPedidoService) {}
 
   @Post(':pedidoId/productos/:productoId')
-  async addReviewUsuario(
+  async addProductoPedido(
     @Param('pedidoId') pedidoId: string,
     @Param('productoId') productoId: string,
   ) {
