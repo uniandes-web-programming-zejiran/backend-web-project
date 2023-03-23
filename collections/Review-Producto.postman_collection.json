@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "9d67437f-f1af-4864-8782-b7c2e3f91862",
+		"_postman_id": "67e16525-56c0-4ea0-b047-4a3f4170ee4f",
 		"name": "Review-Producto",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "11708390"
 	},
 	"item": [
 		{
-			"name": "Obtener token",
+			"name": "Obtener token producto",
 			"event": [
 				{
 					"listen": "test",
@@ -25,7 +25,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"username\": \"adminReview\",\r\n   \"password\": \"adminReview\"\r\n}",
+					"raw": "{\r\n   \"username\": \"adminProducto\",\r\n   \"password\": \"adminProducto\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -130,12 +130,51 @@
 					},
 					"status": "Created",
 					"code": 201,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
+		},
+		{
+			"name": "Obtener token review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"token\", data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"username\": \"adminReview\",\r\n   \"password\": \"adminReview\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
 		},
 		{
 			"name": "Agregar review",
@@ -805,10 +844,10 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},

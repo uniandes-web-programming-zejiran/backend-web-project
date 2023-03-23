@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "5bba5cf0-10b0-41c2-b244-a52eeb2e0d61",
+		"_postman_id": "26722331-1cbc-4ea7-aee2-22d6e32e6007",
 		"name": "Review-Usuario",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "11708390"
 	},
 	"item": [
 		{
-			"name": "Obtener token",
+			"name": "Obtener token usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -25,7 +25,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"username\": \"adminReview\",\r\n   \"password\": \"adminReview\"\r\n}",
+					"raw": "{\r\n   \"username\": \"adminUsuario\",\r\n   \"password\": \"adminUsuario\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -137,6 +137,45 @@
 					"body": "{\r\n    \"id\": \"U111\",\r\n    \"cedula\": \"1006692068\",\r\n    \"nombre\": \"Armando\",\r\n    \"fechaInscripcion\": \"20230217\",\r\n    \"fechaNacimiento\": \"20030826\",\r\n    \"imagen\": \"fotoPerfil.jpg\"\r\n}"
 				}
 			]
+		},
+		{
+			"name": "Obtener token review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"token\", data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"username\": \"adminReview\",\r\n   \"password\": \"adminReview\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
 		},
 		{
 			"name": "Agregar review",
@@ -806,10 +845,10 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
