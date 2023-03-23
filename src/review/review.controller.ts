@@ -26,21 +26,21 @@ import { RolesGuard } from 'src/auth/roles.guard';
 export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {}
 
-  @HasRoles(Role.AdminNegocio, Role.LecturaNegocio)
+  @HasRoles(Role.AdminReview, Role.LecturaReview)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   async findAll() {
     return await this.reviewService.findAll();
   }
 
-  @HasRoles(Role.AdminNegocio, Role.LecturaNegocio)
+  @HasRoles(Role.AdminReview, Role.LecturaReview)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get(':reviewId')
   async findOne(@Param('reviewId') reviewId: string) {
     return await this.reviewService.findOne(reviewId);
   }
 
-  @HasRoles(Role.AdminNegocio, Role.EscrituraNegocio)
+  @HasRoles(Role.AdminReview, Role.EscrituraReview)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Post()
   async create(@Body() reviewDto: ReviewDto) {
@@ -48,7 +48,7 @@ export class ReviewController {
     return await this.reviewService.create(review);
   }
 
-  @HasRoles(Role.AdminNegocio, Role.EscrituraNegocio)
+  @HasRoles(Role.AdminReview, Role.EscrituraReview)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Put(':reviewId')
   async update(
@@ -59,7 +59,7 @@ export class ReviewController {
     return await this.reviewService.update(reviewId, review);
   }
 
-  @HasRoles(Role.AdminNegocio, Role.EliminarNegocio)
+  @HasRoles(Role.AdminReview, Role.EliminarReview)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Delete(':reviewId')
   @HttpCode(204)

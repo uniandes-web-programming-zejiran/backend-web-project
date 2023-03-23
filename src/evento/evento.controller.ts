@@ -26,21 +26,21 @@ import { RolesGuard } from 'src/auth/roles.guard';
 export class EventoController {
   constructor(private readonly eventoService: EventoService) {}
 
-  @HasRoles(Role.AdminNegocio, Role.LecturaNegocio)
+  @HasRoles(Role.AdminEvento, Role.LecturaEvento)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   async findAll() {
     return await this.eventoService.findAll();
   }
 
-  @HasRoles(Role.AdminNegocio, Role.LecturaNegocio)
+  @HasRoles(Role.AdminEvento, Role.LecturaEvento)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get(':eventoId')
   async findOne(@Param('eventoId') eventoId: string) {
     return await this.eventoService.findOne(eventoId);
   }
 
-  @HasRoles(Role.AdminNegocio, Role.EscrituraNegocio)
+  @HasRoles(Role.AdminEvento, Role.EscrituraEvento)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Post()
   async create(@Body() eventoDto: EventoDto) {
@@ -48,7 +48,7 @@ export class EventoController {
     return await this.eventoService.create(evento);
   }
 
-  @HasRoles(Role.AdminNegocio, Role.EscrituraNegocio)
+  @HasRoles(Role.AdminEvento, Role.EscrituraEvento)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Put(':eventoId')
   async update(
@@ -59,7 +59,7 @@ export class EventoController {
     return await this.eventoService.update(eventoId, evento);
   }
 
-  @HasRoles(Role.AdminNegocio, Role.EliminarNegocio)
+  @HasRoles(Role.AdminEvento, Role.EliminarEvento)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Delete(':eventoId')
   @HttpCode(204)
