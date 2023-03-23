@@ -8,12 +8,17 @@ import {
   Post,
   Put,
   UseInterceptors,
+  UseGuards,
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { PublicacionDto } from 'src/publicacion/publicacion.dto';
 import { PublicacionEntity } from 'src/publicacion/publicacion.entity';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { UsuarioPublicacionService } from './usuario-publicacion.service';
+import { RolesGuard } from '../auth/roles.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { HasRoles } from '../auth/has-roles.decorator';
+import { Role } from '../auth/role.enum';
 
 @Controller('usuarios')
 @UseInterceptors(BusinessErrorsInterceptor)
@@ -22,6 +27,8 @@ export class UsuarioPublicacionController {
     private readonly usuarioPublicacionService: UsuarioPublicacionService,
   ) {}
 
+  @HasRoles(Role.AdminUsuario, Role.EscrituraUsuario, Role.AdminPublicacion, Role.EscrituraPublicacion)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Post(':usuarioId/publicaciones/:publicacionId')
   async addPublicacionUsuario(
     @Param('usuarioId') usuarioId: string,
@@ -33,6 +40,8 @@ export class UsuarioPublicacionController {
     );
   }
 
+  @HasRoles(Role.AdminUsuario, Role.LecturaUsuario, Role.AdminPublicacion, Role.LecturaPublicacion)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get(':usuarioId/publicaciones/:publicacionId')
   async findPublicacionByusuarioIdpublicacionId(
     @Param('usuarioId') usuarioId: string,
@@ -44,6 +53,8 @@ export class UsuarioPublicacionController {
     );
   }
 
+  @HasRoles(Role.AdminUsuario, Role.LecturaUsuario, Role.AdminPublicacion, Role.LecturaPublicacion)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get(':usuarioId/publicaciones')
   async findPublicacionsByusuarioId(@Param('usuarioId') usuarioId: string) {
     return await this.usuarioPublicacionService.findPublicacionByUsuarioId(
@@ -51,6 +62,8 @@ export class UsuarioPublicacionController {
     );
   }
 
+  @HasRoles(Role.AdminUsuario, Role.EscrituraUsuario, Role.AdminPublicacion, Role.EscrituraPublicacion)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Put(':usuarioId/publicaciones')
   async associatePublicacionsMuseum(
     @Body() publicacionesDto: PublicacionDto[],
@@ -63,6 +76,8 @@ export class UsuarioPublicacionController {
     );
   }
 
+  @HasRoles(Role.AdminUsuario, Role.EliminarUsuario, Role.AdminPublicacion, Role.EliminarPublicacion)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Delete(':usuarioId/publicaciones/:publicacionId')
   @HttpCode(204)
   async deletePublicacionMuseum(
