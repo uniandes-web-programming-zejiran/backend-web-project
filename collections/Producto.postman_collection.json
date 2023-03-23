@@ -1,11 +1,50 @@
 {
 	"info": {
-		"_postman_id": "036be2e8-5c2d-4bab-bf9d-1b4ef5f0685c",
+		"_postman_id": "80f4ddff-220b-4b2a-b58f-b9951ea57761",
 		"name": "Producto",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25914771"
 	},
 	"item": [
+		{
+			"name": "Obtener token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"token\", data.token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"username\": \"adminProducto\",\r\n   \"password\": \"adminProducto\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Agregar producto",
 			"event": [
@@ -25,6 +64,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -80,10 +129,10 @@
 					},
 					"status": "Created",
 					"code": 201,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
@@ -108,6 +157,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -133,15 +192,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "[\r\n    {\r\n    \"id\": \"37461718\",\r\n    \"nombre\": \"Huevos ecologicos\",\r\n    \"precio\": 20,\r\n    \"stock\": 70,\r\n    \"categoria\": \"Alimentos\",\r\n    \"imagen\": \"www.imagenHuevos.com/huevos.png\",\r\n    \"negocio\":[\r\n        {\r\n                \"id\": \"48a9ab90-1276-11ed-861d\",\r\n                \"nombre\": \"FrutiEcologica\",\r\n                \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n                \"tipo\": \"Alimentos\",\r\n                \"ubicacion\": \"Calle 36 #28-16\",\r\n                \"fechaCreacion\": \"20 de Agosto del 2022\"\r\n        }\r\n    ],\r\n    \"reviews\":[\r\n        {\r\n            \"id\": \"3831717\",\r\n            \"titulo\": \"Excelente!\",\r\n            \"descripcion\": \"Muy buen producto!\",\r\n            \"puntaje\": 4,\r\n            \"imagen\": \"bueno.png\",\r\n            \"fecha\": \"22 de Marzo\"\r\n        }\r\n    ],\r\n    \"pedidos\":[\r\n        {\r\n            \"id\":\"466622\",\r\n            \"fecha\":\"11 de Agosto de 2022\",\r\n            \"monto\": 33\r\n        }\r\n    ]\r\n    }\r\n]",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{baseUrl}}/productos",
 							"host": [
@@ -154,10 +204,10 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
@@ -177,6 +227,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -203,15 +263,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"37461718\",\r\n    \"nombre\": \"Huevos ecologicos\",\r\n    \"precio\": 20,\r\n    \"stock\": 70,\r\n    \"categoria\": \"Alimentos\",\r\n    \"imagen\": \"www.imagenHuevos.com/huevos.png\",\r\n    \"negocio\":[\r\n        {\r\n                \"id\": \"48a9ab90-1276-11ed-861d\",\r\n                \"nombre\": \"FrutiEcologica\",\r\n                \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n                \"tipo\": \"Alimentos\",\r\n                \"ubicacion\": \"Calle 36 #28-16\",\r\n                \"fechaCreacion\": \"20 de Agosto del 2022\"\r\n        }\r\n    ],\r\n    \"reviews\":[\r\n        {\r\n            \"id\": \"3831717\",\r\n            \"titulo\": \"Excelente!\",\r\n            \"descripcion\": \"Muy buen producto!\",\r\n            \"puntaje\": 4,\r\n            \"imagen\": \"bueno.png\",\r\n            \"fecha\": \"22 de Marzo\"\r\n        }\r\n    ],\r\n    \"pedidos\":[\r\n        {\r\n            \"id\":\"466622\",\r\n            \"fecha\":\"11 de Agosto de 2022\",\r\n            \"monto\": 33\r\n        }\r\n    ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{baseUrl}}/producto/{{producto_id}}",
 							"host": [
@@ -225,10 +276,10 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
@@ -253,6 +304,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -279,15 +340,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El producto con el id dado no existe\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{baseUrl}}/productos/00000000-0000-0000-0000-000000000000",
 							"host": [
@@ -301,10 +353,10 @@
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
@@ -324,6 +376,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -374,10 +436,10 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
@@ -402,6 +464,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -452,10 +524,10 @@
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
@@ -475,6 +547,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -511,10 +593,10 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
@@ -539,6 +621,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -587,10 +679,10 @@
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		}
