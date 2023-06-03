@@ -78,7 +78,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"nombre\": \"FrutiEcologica\",\r\n   \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n   \"tipo\": \"Alimentos\",\r\n   \"ubicacion\": \"Calle 36 #28-16\",\r\n   \"fechaCreacion\": \"20 de Agosto del 2022\",\r\n   \"imagen\": \"https://libbys.es/wordpress/wp-content/uploads/2014/12/multifrutas.jpg\"\r\n}",
+					"raw": "{\r\n   \"nombre\": \"FrutiEcologica\",\r\n   \"descripcion\": \"Tienda de frutas ecologica y sostenible con el ambiente.\",\r\n   \"tipo\": \"Alimentos\",\r\n   \"ubicacion\": \"Calle 36 #28-16\",\r\n   \"fechaCreacion\": \"20 de Agosto del 2022\",\r\n   \"imagen\": \"www.negocios.com/negocio.png\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
